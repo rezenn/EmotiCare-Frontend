@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Basic&family=Baumans&family=Doto:wght@100..900&family=Faculty+Glyphic&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Anta&family=Baumans&family=Doto:wght@100..900&family=Marmelad&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.main {
+    background-color: #EBDFD7;
+    width: 100%;
+    margin-top: 0;
+
+}
+
+.moodImage {
+    margin-top: 10rem;
+    z-index: -1;
+}
+
+
+
+#banner {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+
+
+#saying {
+    display: flex;
+    align-items: center;
+}
+
+.slogan {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 96px;
+    font-weight: bold;
+    line-height: 1.2;
+    padding: 2rem 0 2rem 2rem;
+    z-index: 1;
+
+}
+
+.keyword {
+    font-family: "Anta", sans-serif;
+    font-size: 100px;
+    font-weight: normal;
+    color: #6D8E00;
+    z-index: 1;
+}
+
+#boxDescription {
+    display: grid;
+    gap: 50px;
+    grid-template-columns: auto auto;
+
+}
+
+.description {
+    width: 550px;
+    height: auto;
+    max-height: auto;
+    padding: 10px;
+    margin: 2.9rem;
+    background-color: hsla(0, 0%, 100%, 0.349);
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+.title {
+    font-family: "Marmelad", sans-serif;
+    font-weight: normal;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.Information {
+    font-family: "Marmelad", sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+
+@media (max-width:1435px) {
+    .moodImage {
+        width: 650px;
+    }
+
+    h1 {
+        font-size: 86px;
+        line-height: 1.2;
+    }
+
+    span {
+        font-size: 90px;
+    }
+
+    #boxDescription {
+        gap: 40px;
+
+    }
+
+    .description {
+        width: 450px;
+        font-size: 14px;
+    }
+
+    .title {
+        font-size: 1.7rem;
+    }
+
+    .Information {
+        font-size: 1.3rem;
+        line-height: 1.3;
+    }
+}
+
+@media (max-width: 1220px) {
+    .moodImage {
+        width: 600px;
+    }
+
+    h1 {
+        font-size: 76px;
+        line-height: 1.1;
+    }
+
+    span {
+        font-size: 80px;
+    }
+
+    #boxDescription {
+        gap: 40px;
+
+    }
+
+    .description {
+        width: 400px;
+        font-size: 14px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .Information {
+        font-size: 1.3rem;
+        line-height: 1.3;
+    }
+
+}
+
+
+@media (max-width: 1000px) {
+    .moodImage {
+        width: 530px;
+    }
+
+    h1 {
+        font-size: 66px;
+        line-height: 1.1;
+    }
+
+    span {
+        font-size: 70px;
+    }
+
+    #boxDescription {
+        gap: 35px;
+
+    }
+
+    .description {
+        width: 350px;
+        font-size: 12px;
+    }
+
+    .title {
+        font-size: 1.3rem;
+    }
+
+    .Information {
+        font-size: 1.1rem;
+        line-height: 1.1;
+    }
+}
+
+@media (max-width: 850px) {
+    .moodImage {
+        width: 500px;
+    }
+
+    h1 {
+        font-size: 55px;
+    }
+
+    span {
+        font-size: 59px;
+    }
+
+    #boxDescription {
+        gap: 35px;
+
+    }
+
+    .description {
+        width: 300px;
+        font-size: 12px;
+    }
+
+    .title {
+        font-size: 1.2rem;
+    }
+
+    .Information {
+        font-size: 1rem;
+        line-height: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .moodImage {
+        width: 430px;
+    }
+
+    h1 {
+        font-size: 56px;
+        line-height: 1.1;
+    }
+
+    span {
+        font-size: 60px;
+    }
+
+    #boxDescription {
+        gap: 10px;
+
+    }
+
+    .description {
+        width: 240px;
+        font-size: 10px;
+    }
+
+    .title {
+        font-size: 1.1rem;
+    }
+
+    .Information {
+        font-size: 0.9rem;
+        line-height: 1.1;
+    }
+}
+
+@media (max-width: 650px) {
+    .moodImage {
+        display: none;
+    }
+
+    h1 {
+        font-size: 66px;
+        line-height: 1.1;
+    }
+
+    span {
+        font-size: 70px;
+    }
+
+    #boxDescription {
+        gap: 10px;
+        grid-template-columns: auto;
+
+
+    }
+
+    .description {
+        width: 450px;
+        font-size: 9px;
+    }
+
+    .title {
+        font-size: 1.7rem;
+    }
+
+    .Information {
+        font-size: 1.4rem;
+        line-height: 1;
+    }
+}
+
+@media (max-width: 480px) {
+
+
+    h1 {
+        font-size: 40px;
+        line-height: 1.2;
+    }
+
+    span {
+        font-size: 43px;
+    }
+
+    #boxDescription {
+        gap: 10px;
+    }
+
+    .description {
+        width: 300px;
+        font-size: 14px;
+    }
+
+    .title {
+        font-size: 1.2rem;
+    }
+
+    .Information {
+        font-size: 1rem;
+        line-height: 1;
+    }
+}
