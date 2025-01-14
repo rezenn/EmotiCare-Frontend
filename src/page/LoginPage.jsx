@@ -2,11 +2,11 @@ import Header from "../component/Navbar/Header";
 import LoginForm from "../component/LoginForm";
 import Footer from "../component/Footer/Footer";
 
-function Login(){
+function Login({setAuth}){
     return(
         <>
            <Header/> 
-           <LoginForm/>
+           <LoginForm setAuth={setAuth}/>
            <Footer/>
            {/*  */}
         </>
