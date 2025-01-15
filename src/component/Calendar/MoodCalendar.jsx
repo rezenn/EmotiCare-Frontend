@@ -1,9 +1,54 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
+import { useNavigate } from "react-router-dom";
 import "react-calendar/dist/Calendar.css"; 
 import style from  "./MoodCalendar.module.css"; 
 
-const MoodCalendar = () => {
+const MoodCalendar = ({setAuth}) => {
+
+  const navigate = useNavigate();
+
+  const handleNavigation = (page) => {
+    setActivePage(page);
+    navigate(`/${page}`);
+  }
+
+  const [name, setName] = useState("");
+
+  async function getName() {
+    try {
+      const token = localStorage.getItem("token");
+      if(!token){
+        throw new Error("No token found");
+      }
+
+      const response = await fetch(
+        "http://localhost:5000/moodTracker",{
+          method: "GET",
+          headers: {token},
+        }
+      );
+
+      if(!response.ok){
+        throw new Error("Failed to fetch username.")
+      }
+
+      const parseRes = await response.json();
+      setName(parseRes.user_name);
+
+    } catch (error) {
+      console.error(error.message);
+      
+    }
+    
+  }
+
+  useEffect(() => {
+    getName();
+  },[])
+
+
+
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [moods, setMoods] = useState({});
   const [isPickerOpen, setIsPickerOpen] = useState(false);
@@ -62,7 +107,7 @@ const MoodCalendar = () => {
     <div className={style.CalendarDiv}>
       <h1 className={style.title}>Mood Tracker</h1>
       <div className={style.moodCalendar}>
-        <h1 className="moodToday">How is your mood today</h1>
+        <h1 className="moodToday">How is your mood today, {name}!</h1>
         <Calendar
           className={style.moodCalendar}
           onClickDay={handleDateClick}

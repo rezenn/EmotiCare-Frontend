@@ -1,5 +1,7 @@
 import "./navbar.css";
 import React, { useState } from "react";
+import { Link  } from "react-router-dom";
+
 
 
 function Navbar() {
@@ -17,14 +19,18 @@ function Navbar() {
       </div>
       <nav className={`nav ${isMenuOpen ? "active" : ""}`}>
         <ul>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Mood Tracker</a></li>
-          <li><a href="#">Daily Challenge</a></li>
-          <li><a href="#">Insight</a></li>
-          <li><a href="#">Resources</a></li> 
-          <li><a href="#">Settings</a></li> 
+          <li><Link to="/dashboard">Dashboard</Link></li>
+          <li><Link to="/moodTracker">Mood Tracker</Link></li>
+          <li><Link to="/dailyChallenge">Daily Challenge</Link></li>
+          <li><Link to="/insight">Insight</Link></li>
+          <li><Link to="/resources">Resources</Link></li> 
+          <li><Link to="/settings">Settings</Link></li> 
+          <li><Link to="/profile">        
+            <img className="user" 
+            src="./src/assets/User.png" 
+            alt="Users" />
+          </Link></li>
         </ul>
-        <img className="user" src="./src/assets/User.png" alt="Users" />
       </nav>
       <div className="hamburger" onClick={toggleMenu}>
         <div></div>
