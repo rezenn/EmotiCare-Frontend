@@ -25,12 +25,12 @@ function Navbar() {
           <li><Link to="/insight">Insight</Link></li>
           <li><Link to="/resources">Resources</Link></li> 
           <li><Link to="/settings">Settings</Link></li> 
-          <li><Link to="/profile">        
+        </ul>
+        <Link to="/profile">        
             <img className="user" 
             src="./src/assets/User.png" 
             alt="Users" />
-          </Link></li>
-        </ul>
+          </Link>
       </nav>
       <div className="hamburger" onClick={toggleMenu}>
         <div></div>

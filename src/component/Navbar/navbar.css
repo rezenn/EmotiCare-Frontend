@@ -49,7 +49,7 @@ body {
 }
 
 .nav ul li {
-    margin: 0 10px;
+    margin: 0 0px;
 }
 
 .nav a {
@@ -68,7 +68,8 @@ body {
     width: 40px;
     height: 40px;
     margin-top: 10px;
-    margin-left: 60px;
+    margin-left: 70px;
+
     border-radius: 50%;
     border: 1px solid #333;
 }

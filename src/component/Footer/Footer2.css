@@ -20,6 +20,8 @@
     color: #000;
     background-color: #9EBE34;
     border: 1px solid #000;
+    border: none;
+    border-radius: 10px;
     padding: 3px;
     margin-left: 1270px;
 }
