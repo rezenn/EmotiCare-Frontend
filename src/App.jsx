@@ -6,6 +6,7 @@ import RegisterPage from "./page/RegisterPage";
 import ForgotPasswordPage from "./page/ForgotPasswordPage";
 import MoodTracker from "./page/MoodTrackerPage";
 import Settings from "./page/Settings";
+import Dashboard from "./page/Dashboard";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -51,6 +52,12 @@ function App() {
                 <Route path="/login" element={<Login setAuth={setAuth} />} />
                 <Route path="/register" element={<RegisterPage setAuth={setAuth} />} />
                 <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
+                <Route
+                    path="/dashboard"
+                    element={
+                        isAuthenticated ? <Dashboard /> : <Navigate to="/login" />
+                    }
+                />
                 <Route
                     path="/moodTracker"
                     element={

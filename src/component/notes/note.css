@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Basic&family=Baumans&family=Doto:wght@100..900&family=Faculty+Glyphic&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Anta&family=Baumans&family=Doto:wght@100..900&family=Marmelad&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.noteContainer {
+    margin: 100px 0 0 50px;
+    width: 410px;
+    height: 280px;
+    background-color: hsla(0, 0%, 100%, 0.34);
+    border-radius: 15px;
+}
+
+.noteTitle {
+    margin: 1rem;
+    color: #000;
+    font-family: "Raleway", serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+hr {
+    margin: 7px 10px 0 10px;
+
+}
+
+.note {
+    margin: 25px 20px 10px 30px;
+    width: 345px;
+    min-height: 200px;
+    max-height: 200px;
+    background-color: hsla(214, 94%, 73%, 0.59);
+    border: 2px solid #5DC6F7;
+    border-radius: 5px;
+    color: #333;
+}
