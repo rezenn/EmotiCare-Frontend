@@ -1,8 +1,6 @@
 import "./navbar.css";
 import React, { useState } from "react";
-import { Link  } from "react-router-dom";
-
-
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,18 +17,28 @@ function Navbar() {
       </div>
       <nav className={`nav ${isMenuOpen ? "active" : ""}`}>
         <ul>
-          <li><Link to="/dashboard">Dashboard</Link></li>
-          <li><Link to="/moodTracker">Mood Tracker</Link></li>
-          <li><Link to="/dailyChallenge">Daily Challenge</Link></li>
-          <li><Link to="/insight">Insight</Link></li>
-          <li><Link to="/resources">Resources</Link></li> 
-          <li><Link to="/settings">Settings</Link></li> 
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+          <li>
+            <Link to="/moodTracker">Mood Tracker</Link>
+          </li>
+          <li>
+            <Link to="/dailyChallenge">Daily Challenge</Link>
+          </li>
+          <li>
+            <Link to="/insight">Insight</Link>
+          </li>
+          <li>
+            <Link to="/resources">Resources</Link>
+          </li>
+          <li>
+            <Link to="/settings">Settings</Link>
+          </li>
         </ul>
-        <Link to="/profile">        
-            <img className="user" 
-            src="./src/assets/User.png" 
-            alt="Users" />
-          </Link>
+        <Link to="/profile">
+          <img className="user" src="./src/assets/User.png" alt="Users" />
+        </Link>
       </nav>
       <div className="hamburger" onClick={toggleMenu}>
         <div></div>

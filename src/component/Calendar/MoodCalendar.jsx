@@ -1,53 +1,45 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import { useNavigate } from "react-router-dom";
-import "react-calendar/dist/Calendar.css"; 
-import style from  "./MoodCalendar.module.css"; 
+import "react-calendar/dist/Calendar.css";
+import styles from "./MoodCalendar.module.css";
 
-const MoodCalendar = ({setAuth}) => {
-
+const MoodCalendar = ({ setAuth }) => {
   const navigate = useNavigate();
 
   const handleNavigation = (page) => {
     setActivePage(page);
     navigate(`/${page}`);
-  }
+  };
 
   const [name, setName] = useState("");
 
   async function getName() {
     try {
       const token = localStorage.getItem("token");
-      if(!token){
+      if (!token) {
         throw new Error("No token found");
       }
 
-      const response = await fetch(
-        "http://localhost:5000/moodTracker",{
-          method: "GET",
-          headers: {token},
-        }
-      );
+      const response = await fetch("http://localhost:5000/moodTracker", {
+        method: "GET",
+        headers: { token },
+      });
 
-      if(!response.ok){
-        throw new Error("Failed to fetch username.")
+      if (!response.ok) {
+        throw new Error("Failed to fetch username.");
       }
 
       const parseRes = await response.json();
       setName(parseRes.user_name);
-
     } catch (error) {
       console.error(error.message);
-      
     }
-    
   }
 
   useEffect(() => {
     getName();
-  },[])
-
-
+  }, []);
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [moods, setMoods] = useState({});
@@ -71,8 +63,6 @@ const MoodCalendar = ({setAuth}) => {
     { emoji: "😔", label: "Disappointed" },
     { emoji: "😡", label: "Angry" },
     { emoji: "😔", label: "Gloomy " },
-
-    
   ];
 
   useEffect(() => {
@@ -104,24 +94,24 @@ const MoodCalendar = ({setAuth}) => {
   };
 
   return (
-    <div className={style.CalendarDiv}>
-      <h1 className={style.title}>Mood Tracker</h1>
-      <div className={style.moodCalendar}>
+    <div className={styles.CalendarDiv}>
+      <h1 className={styles.title}>Mood Tracker</h1>
+      <div className={styles.moodCalendar}>
         <h1 className="moodToday">How is your mood today, {name}!</h1>
         <Calendar
-          className={style.moodCalendar}
+          className={styles.moodCalendar}
           onClickDay={handleDateClick}
           value={selectedDate}
           tileContent={tileContent}
         />
         {isPickerOpen && (
-          <div className={style.emojiPicker}>
+          <div className={styles.emojiPicker}>
             <h3>Select your mood</h3>
-            <div className={style.emojiOptions}>
+            <div className={styles.emojiOptions}>
               {moodOptions.map((mood) => (
                 <button
                   key={mood.label}
-                  className={style.emojiButton}
+                  className={styles.emojiButton}
                   onClick={() => handleEmojiSelect(mood.emoji)}
                 >
                   <span className="span" role="img" aria-label={mood.label}>
@@ -133,7 +123,12 @@ const MoodCalendar = ({setAuth}) => {
             </div>
           </div>
         )}
-        {isPickerOpen && <div className={style.emojiPickerOverlay} onClick={() => setIsPickerOpen(false)} />}
+        {isPickerOpen && (
+          <div
+            className={styles.emojiPickerOverlay}
+            onClick={() => setIsPickerOpen(false)}
+          />
+        )}
       </div>
     </div>
   );

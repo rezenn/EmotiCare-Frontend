@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    grid-template-areas:
+        "challenge timer"
+        "challenge note"
+        "challenges mood";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.dashboardChallenge {
+    grid-area: challenge;
+}
+
+.dashboardChallenges {
+    grid-area: challenges;
+}
+
+.timer {
+    grid-area: timer;
+}
+
+.note {
+    grid-area: note;
+}
+
+.mood {
+    grid-area: mood;
+}

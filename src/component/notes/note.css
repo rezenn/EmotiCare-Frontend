@@ -9,6 +9,7 @@
 
 .noteContainer {
     margin: 100px 0 0 50px;
+    padding-top: 10px;
     width: 410px;
     height: 280px;
     background-color: hsla(0, 0%, 100%, 0.34);

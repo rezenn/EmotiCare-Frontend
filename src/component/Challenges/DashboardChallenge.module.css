@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Basic&family=Baumans&family=Doto:wght@100..900&family=Faculty+Glyphic&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Anta&family=Baumans&family=Doto:wght@100..900&family=Marmelad&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.challengeContainer {
+    padding-top: 10px;
+    margin: 100px 0 0 50px;
+    width: 690px;
+    min-height: 455px;
+    background-color: hsla(0, 0%, 100%, 0.34);
+    border-radius: 15px;
+}
+
+.challengeTitle {
+    margin: 1rem;
+    margin-bottom: 0px;
+    color: #000;
+    font-family: "Raleway", serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.challengeNames {
+    color: #000;
+    font-family: "Raleway", serif;
+    font-size: 0.5rem;
+    font-weight: bold;
+}
+
+.enterChallenge {
+    border: 5px;
+    width: 500px;
+    margin: 0px 0 0 10px;
+}
+
+ul {
+    margin: 0 0 5px 15px;
+    padding: 0px;
+}
+
+.listItems {
+    display: flex;
+    display: inline;
+    align-items: center;
+    list-style: none;
+}
+
+.inputCheckbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    color: #fdfdfd;
+    accent-color: #E38A33;
+
+}
+
+.challengeName {
+    width: 500px;
+    padding-bottom: 5px;
+    color: #333333aa;
+    font-family: 'Afacad', serif;
+    font-size: 1.6rem;
+
+}
+
+.challengeName:first-child {
+    margin-top: 10px;
+}
