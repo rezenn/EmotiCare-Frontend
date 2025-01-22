@@ -25,7 +25,6 @@ const MoodCalendar = ({ setAuth }) => {
         method: "GET",
         headers: { token },
       });
-
       if (!response.ok) {
         throw new Error("Failed to fetch username.");
       }
@@ -39,6 +38,7 @@ const MoodCalendar = ({ setAuth }) => {
 
   useEffect(() => {
     getName();
+    fetchMoods();
   }, []);
 
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -50,11 +50,10 @@ const MoodCalendar = ({ setAuth }) => {
     { emoji: "😀", label: "Happy" },
     { emoji: "🤩", label: "Excited" },
     { emoji: "😇", label: "Blessed" },
-    { emoji: "😇", label: "Blessed" },
     { emoji: "😴", label: "Tired" },
     { emoji: "😐", label: "Indifferent" },
-    { emoji: "😌", label: "Relaxed " },
-    { emoji: "😮", label: "Suprised" },
+    { emoji: "😌", label: "Relaxed" },
+    { emoji: "😮", label: "Surprised" },
     { emoji: "🫨", label: "Overwhelmed" },
     { emoji: "😰", label: "Nervous" },
     { emoji: "😤", label: "Enraged" },
@@ -62,9 +61,34 @@ const MoodCalendar = ({ setAuth }) => {
     { emoji: "😕", label: "Confused" },
     { emoji: "😔", label: "Disappointed" },
     { emoji: "😡", label: "Angry" },
-    { emoji: "😔", label: "Gloomy " },
+    { emoji: "😔", label: "Gloomy" },
   ];
 
+  // Fetch moods from the database
+  async function fetchMoods() {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:5000/moodTracker/mood", {
+        method: "GET",
+        headers: { token },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch moods");
+      }
+
+      const data = await response.json();
+      const moods = {};
+      data.forEach((mood) => {
+        moods[mood.mood_date] = mood.mood_emoji;
+      });
+      setMoods(moods);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+  // Store moods locally
   useEffect(() => {
     const storedMoods = JSON.parse(localStorage.getItem("moods")) || {};
     setMoods(storedMoods);
@@ -74,18 +98,53 @@ const MoodCalendar = ({ setAuth }) => {
     localStorage.setItem("moods", JSON.stringify(moods));
   }, [moods]);
 
+  // Handle date click
   const handleDateClick = (date) => {
     setCurrentDate(date);
     setIsPickerOpen(true);
   };
+  console.log("Current Date: ", currentDate);
 
-  const handleEmojiSelect = (emoji) => {
+  // Handle emoji selection
+  const handleEmojiSelect = async (emoji, label) => {
+    if (!currentDate) {
+      console.error("Invalid date");
+      return;
+    }
+
     const formattedDate = currentDate.toISOString().split("T")[0];
     const updatedMoods = { ...moods, [formattedDate]: emoji };
     setMoods(updatedMoods);
     setIsPickerOpen(false);
+
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found");
+      }
+
+      const response = await fetch("http://localhost:5000/moodTracker", {
+        method: "POST",
+        headers: { token, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          moodDate: formattedDate,
+          moodEmoji: emoji,
+          moodLabel: label,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to post mood");
+      }
+
+      const newMood = await response.json();
+      console.log("Mood added:", newMood);
+    } catch (error) {
+      console.error("Error posting mood:", error.message);
+    }
   };
 
+  // Render the tile content
   const tileContent = ({ date, view }) => {
     if (view === "month") {
       const formattedDate = date.toISOString().split("T")[0];
@@ -112,9 +171,9 @@ const MoodCalendar = ({ setAuth }) => {
                 <button
                   key={mood.label}
                   className={styles.emojiButton}
-                  onClick={() => handleEmojiSelect(mood.emoji)}
+                  onClick={() => handleEmojiSelect(mood.emoji, mood.label)}
                 >
-                  <span className="span" role="img" aria-label={mood.label}>
+                  <span role="img" aria-label={mood.label}>
                     {mood.emoji}
                   </span>
                   <p>{mood.label}</p>
