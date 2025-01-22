@@ -35,6 +35,7 @@ function LoginForm({ setAuth }) {
       if (parseRes.token) {
         localStorage.setItem("token", parseRes.token);
         setAuth(true);
+        alert("Login successful!");
         navigate("/dashboard");
       } else {
         setAuth(false);

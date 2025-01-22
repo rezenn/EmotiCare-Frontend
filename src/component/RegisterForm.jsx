@@ -36,6 +36,7 @@ function RegisterForm({ setAuth }) {
         if (parseRes.token) {
           localStorage.setItem("token", parseRes.token);
           setAuth(true);
+          alert("Registration successful!");
         } else {
           console.error("Missing token.");
         }

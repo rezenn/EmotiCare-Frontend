@@ -3,7 +3,6 @@ import Calendar from "react-calendar";
 import { useNavigate } from "react-router-dom";
 import "react-calendar/dist/Calendar.css";
 import styles from "./MoodCalendar.module.css";
-
 const MoodCalendar = ({ setAuth }) => {
   const navigate = useNavigate();
 
@@ -13,6 +12,7 @@ const MoodCalendar = ({ setAuth }) => {
   };
 
   const [name, setName] = useState("");
+  const [userId, setUserId] = useState(null);
 
   async function getName() {
     try {
@@ -31,6 +31,7 @@ const MoodCalendar = ({ setAuth }) => {
 
       const parseRes = await response.json();
       setName(parseRes.user_name);
+      setUserId(parseRes.user_id); // Assuming user_id is part of the response
     } catch (error) {
       console.error(error.message);
     }
@@ -49,11 +50,12 @@ const MoodCalendar = ({ setAuth }) => {
   const moodOptions = [
     { emoji: "😀", label: "Happy" },
     { emoji: "🤩", label: "Excited" },
+    { emoji: "⚪", label: "Blank" },
     { emoji: "😇", label: "Blessed" },
-    { emoji: "😴", label: "Tired" },
-    { emoji: "😐", label: "Indifferent" },
     { emoji: "😌", label: "Relaxed" },
     { emoji: "😮", label: "Surprised" },
+    { emoji: "😴", label: "Tired" },
+    { emoji: "😐", label: "Indifferent" },
     { emoji: "🫨", label: "Overwhelmed" },
     { emoji: "😰", label: "Nervous" },
     { emoji: "😤", label: "Enraged" },
@@ -68,6 +70,7 @@ const MoodCalendar = ({ setAuth }) => {
   async function fetchMoods() {
     try {
       const token = localStorage.getItem("token");
+
       const response = await fetch("http://localhost:5000/moodTracker/mood", {
         method: "GET",
         headers: { token },
@@ -82,7 +85,7 @@ const MoodCalendar = ({ setAuth }) => {
       data.forEach((mood) => {
         moods[mood.mood_date] = mood.mood_emoji;
       });
-      setMoods(moods);
+      setMoods(moods); // Update moods in state
     } catch (error) {
       console.error(error.message);
     }
@@ -103,7 +106,6 @@ const MoodCalendar = ({ setAuth }) => {
     setCurrentDate(date);
     setIsPickerOpen(true);
   };
-  console.log("Current Date: ", currentDate);
 
   // Handle emoji selection
   const handleEmojiSelect = async (emoji, label) => {

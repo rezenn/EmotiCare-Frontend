@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../component/Navbar/Navbar";
 import style from "./settings.module.css";
 import logoutIcon from "../assets/logout.svg";
-
+import { toast } from "react-toastify";
 function Settings({ setAuth }) {
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ function Settings({ setAuth }) {
     try {
       localStorage.removeItem("token");
       setAuth(false);
-      toast.success("Logout successfully");
+      alert("Logout successful!");
     } catch (err) {
       console.error(err.message);
     }
