@@ -1,19 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Basic&family=Baumans&family=Doto:wght@100..900&family=Faculty+Glyphic&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Anta&family=Baumans&family=Doto:wght@100..900&family=Marmelad&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .CalendarDiv {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 940px;
+    height: 850px;
     width: 790px;
     margin: 125px 90px;
     border-radius: 10px;
     background-color: #EBDFD7;
     box-shadow: 5px 7px 6px rgba(0, 0, 0, 0.1);
-    padding: 0px;
     flex-wrap: wrap;
+}
+
+.moodometer {
+    margin: 0;
+    padding: 0;
+    width: 200px;
 }
 
 .title {
@@ -21,8 +32,6 @@
     color: #555;
     font-size: 2.3rem;
     text-decoration: none;
-    margin: 0;
-    padding: 0;
 
 }
 
@@ -30,15 +39,14 @@
     font-family: "Marmelad", sans-serif;
     font-size: 25px;
     font-weight: 300;
-    margin: 0px;
-    padding: 0px;
-    text-decoration: underline;
+    margin-right: 300px;
+    display: block;
 }
 
 
 .moodCalendar {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 0px;
     width: 750px;
     height: 700px;
     border-radius: 20px;
@@ -53,6 +61,7 @@ button {
     height: 95px;
     font-size: 40px;
     margin: 30px;
+    margin-top: 0;
     border-radius: 20px;
 
 }
@@ -124,7 +133,7 @@ span {
 }
 
 .emojiButton p {
-    margin-top: 5px;
+    margin-top: 15px;
     font-size: 0.9rem;
     color: #555;
 }

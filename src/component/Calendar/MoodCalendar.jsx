@@ -1,51 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
-import { useNavigate } from "react-router-dom";
 import "react-calendar/dist/Calendar.css";
 import styles from "./MoodCalendar.module.css";
-const MoodCalendar = ({ setAuth }) => {
-  const navigate = useNavigate();
 
-  const handleNavigation = (page) => {
-    setActivePage(page);
-    navigate(`/${page}`);
-  };
-
+const MoodCalendar = () => {
   const [name, setName] = useState("");
   const [userId, setUserId] = useState(null);
-
-  async function getName() {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("No token found");
-      }
-
-      const response = await fetch("http://localhost:5000/moodTracker", {
-        method: "GET",
-        headers: { token },
-      });
-      if (!response.ok) {
-        throw new Error("Failed to fetch username.");
-      }
-
-      const parseRes = await response.json();
-      setName(parseRes.user_name);
-      setUserId(parseRes.user_id); // Assuming user_id is part of the response
-    } catch (error) {
-      console.error(error.message);
-    }
-  }
-
-  useEffect(() => {
-    getName();
-    fetchMoods();
-  }, []);
-
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [moods, setMoods] = useState({});
   const [isPickerOpen, setIsPickerOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const moodOptions = [
     { emoji: "😀", label: "Happy" },
@@ -66,6 +31,38 @@ const MoodCalendar = ({ setAuth }) => {
     { emoji: "😔", label: "Gloomy" },
   ];
 
+  // Convert date to local timezone
+  const getLocalDate = (date) => {
+    const offset = date.getTimezoneOffset() * 60000; // Convert offset to milliseconds
+    const localDate = new Date(date.getTime() - offset);
+    return localDate.toISOString().split("T")[0];
+  };
+
+  // Fetch user info
+  async function getName() {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found");
+      }
+
+      const response = await fetch("http://localhost:5000/moodTracker", {
+        method: "GET",
+        headers: { token },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch username.");
+      }
+
+      const parseRes = await response.json();
+      setName(parseRes.user_name);
+      setUserId(parseRes.user_id);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
   // Fetch moods from the database
   async function fetchMoods() {
     try {
@@ -81,24 +78,30 @@ const MoodCalendar = ({ setAuth }) => {
       }
 
       const data = await response.json();
+      console.log("Fetched moods:", data); // Log the fetched data
+
       const moods = {};
       data.forEach((mood) => {
-        moods[mood.mood_date] = mood.mood_emoji;
+        const formattedDate = getLocalDate(new Date(mood.mood_date)); // Normalize date format
+        moods[formattedDate] = mood.mood_emoji;
       });
-      setMoods(moods); // Update moods in state
+      setMoods(moods);
+      setIsLoading(false);
     } catch (error) {
       console.error(error.message);
+      setIsLoading(false);
     }
   }
 
-  // Store moods locally
+  // Fetch data on component mount
   useEffect(() => {
-    const storedMoods = JSON.parse(localStorage.getItem("moods")) || {};
-    setMoods(storedMoods);
+    getName();
+    fetchMoods();
   }, []);
 
+  // Log the moods state
   useEffect(() => {
-    localStorage.setItem("moods", JSON.stringify(moods));
+    console.log("Moods state:", moods);
   }, [moods]);
 
   // Handle date click
@@ -114,7 +117,7 @@ const MoodCalendar = ({ setAuth }) => {
       return;
     }
 
-    const formattedDate = currentDate.toISOString().split("T")[0];
+    const formattedDate = getLocalDate(currentDate); // Use local timezone
     const updatedMoods = { ...moods, [formattedDate]: emoji };
     setMoods(updatedMoods);
     setIsPickerOpen(false);
@@ -149,48 +152,56 @@ const MoodCalendar = ({ setAuth }) => {
   // Render the tile content
   const tileContent = ({ date, view }) => {
     if (view === "month") {
-      const formattedDate = date.toISOString().split("T")[0];
+      const formattedDate = getLocalDate(date); // Use local timezone
+      console.log("Date:", formattedDate, "Mood:", moods[formattedDate]); // Log the date and mood
       return moods[formattedDate] ? <span>{moods[formattedDate]}</span> : null;
     }
   };
 
+  // Show loading state while fetching data
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className={styles.CalendarDiv}>
-      <h1 className={styles.title}>Mood Tracker</h1>
-      <div className={styles.moodCalendar}>
-        <h1 className="moodToday">How is your mood today, {name}!</h1>
-        <Calendar
-          className={styles.moodCalendar}
-          onClickDay={handleDateClick}
-          value={selectedDate}
-          tileContent={tileContent}
-        />
-        {isPickerOpen && (
-          <div className={styles.emojiPicker}>
-            <h3>Select your mood</h3>
-            <div className={styles.emojiOptions}>
-              {moodOptions.map((mood) => (
-                <button
-                  key={mood.label}
-                  className={styles.emojiButton}
-                  onClick={() => handleEmojiSelect(mood.emoji, mood.label)}
-                >
-                  <span role="img" aria-label={mood.label}>
-                    {mood.emoji}
-                  </span>
-                  <p>{mood.label}</p>
-                </button>
-              ))}
-            </div>
+      <img
+        className={styles.moodometer}
+        src=".\src\assets\moodometer.png"
+        alt="moodometer"
+      />
+      <h2 className={styles.moodToday}>How is your mood today, {name}!</h2>
+      <Calendar
+        className={styles.moodCalendar}
+        onClickDay={handleDateClick}
+        value={selectedDate}
+        tileContent={tileContent}
+      />
+      {isPickerOpen && (
+        <div className={styles.emojiPicker}>
+          <h3>Select your mood</h3>
+          <div className={styles.emojiOptions}>
+            {moodOptions.map((mood) => (
+              <button
+                key={mood.label}
+                className={styles.emojiButton}
+                onClick={() => handleEmojiSelect(mood.emoji, mood.label)}
+              >
+                <span role="img" aria-label={mood.label}>
+                  {mood.emoji}
+                </span>
+                <p>{mood.label}</p>
+              </button>
+            ))}
           </div>
-        )}
-        {isPickerOpen && (
-          <div
-            className={styles.emojiPickerOverlay}
-            onClick={() => setIsPickerOpen(false)}
-          />
-        )}
-      </div>
+        </div>
+      )}
+      {isPickerOpen && (
+        <div
+          className={styles.emojiPickerOverlay}
+          onClick={() => setIsPickerOpen(false)}
+        />
+      )}
     </div>
   );
 };
