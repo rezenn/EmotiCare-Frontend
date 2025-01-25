@@ -4,7 +4,7 @@ function Footer2() {
   return (
     <>
       <footer className="footer">
-        <img src="./src/assets/logo.png" alt="EmotiCare Logo" />
+        <img src="./src/assets/logoImage.png" alt="EmotiCare Logo" />
         <a className="top" href="#top">
           Back to Top
         </a>

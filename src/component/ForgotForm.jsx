@@ -49,7 +49,11 @@ function ForgotForm({ setAuth }) {
     <>
       <div className="main">
         <section>
-          <img className="logoSection" src="./src/assets/logo.png" alt="logo" />
+          <img
+            className="logoSection"
+            src="./src/assets/logoImage.png"
+            alt="logo"
+          />
           <h3>Welcome, Let's create an account</h3>
           <form onSubmit={onSubmitForm}>
             <label id="email">Email</label>

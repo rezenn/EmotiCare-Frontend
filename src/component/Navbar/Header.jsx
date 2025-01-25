@@ -11,7 +11,7 @@ function Header() {
   return (
     <header className="header">
       <div className="logo">
-        <img src="./src/assets/logo.png" alt="EmotiCare Logo" />
+        <img src="./src/assets/logoImage.png" alt="EmotiCare Logo" />
       </div>
       <nav className={`nav ${isMenuOpen ? "active" : ""}`}>
         <ul>

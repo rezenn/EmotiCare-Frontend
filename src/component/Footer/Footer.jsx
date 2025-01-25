@@ -5,7 +5,7 @@ function Footer() {
     <>
       <footer className="footer">
         <hr />
-        <img src="./src/assets/logo.png" alt="EmotiCare Logo" />
+        <img src="./src/assets/logoImage.png" alt="EmotiCare Logo" />
         <hr />
         <div className="footerRow">
           <div className="footerCol">

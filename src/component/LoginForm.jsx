@@ -49,7 +49,11 @@ function LoginForm({ setAuth }) {
     <>
       <div className="main">
         <section>
-          <img className="logoSection" src="./src/assets/logo.png" alt="logo" />
+          <img
+            className="logoSection"
+            src="./src/assets/logoImage.png"
+            alt="logo"
+          />
           <h3>Nice to see you again</h3>
           <form onSubmit={onSubmitFrom}>
             <label id="Login">Email</label>

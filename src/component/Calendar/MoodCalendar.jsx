@@ -78,7 +78,6 @@ const MoodCalendar = () => {
       }
 
       const data = await response.json();
-      console.log("Fetched moods:", data); // Log the fetched data
 
       const moods = {};
       data.forEach((mood) => {
@@ -100,9 +99,7 @@ const MoodCalendar = () => {
   }, []);
 
   // Log the moods state
-  useEffect(() => {
-    console.log("Moods state:", moods);
-  }, [moods]);
+  useEffect(() => {}, [moods]);
 
   // Handle date click
   const handleDateClick = (date) => {
@@ -143,7 +140,6 @@ const MoodCalendar = () => {
       }
 
       const newMood = await response.json();
-      console.log("Mood added:", newMood);
     } catch (error) {
       console.error("Error posting mood:", error.message);
     }
@@ -153,7 +149,6 @@ const MoodCalendar = () => {
   const tileContent = ({ date, view }) => {
     if (view === "month") {
       const formattedDate = getLocalDate(date); // Use local timezone
-      console.log("Date:", formattedDate, "Mood:", moods[formattedDate]); // Log the date and mood
       return moods[formattedDate] ? <span>{moods[formattedDate]}</span> : null;
     }
   };

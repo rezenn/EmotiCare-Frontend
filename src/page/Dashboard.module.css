@@ -15,6 +15,11 @@
     gap: 10px;
 }
 
+.titleName {
+    margin-top: 1500px;
+    margin: 0;
+}
+
 .dashboardChallenge {
     grid-area: challenge;
 }

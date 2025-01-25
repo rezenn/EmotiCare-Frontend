@@ -8,9 +8,9 @@
 }
 
 .noteContainer {
-    margin: 100px 0 0 50px;
+    margin: 0px 0 0 120px;
     padding-top: 10px;
-    width: 410px;
+    width: 450px;
     height: 280px;
     background-color: hsla(0, 0%, 100%, 0.34);
     border-radius: 15px;
@@ -31,7 +31,7 @@ hr {
 
 .note {
     margin: 25px 20px 10px 30px;
-    width: 345px;
+    width: 395px;
     min-height: 200px;
     max-height: 200px;
     background-color: hsla(214, 94%, 73%, 0.59);
