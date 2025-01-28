@@ -24,6 +24,7 @@ function Settings({ setAuth }) {
     e.preventDefault();
     try {
       localStorage.removeItem("token");
+      localStorage.removeItem("email");
       setAuth(false);
       alert("Logout successful!");
     } catch (err) {

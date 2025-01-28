@@ -4,10 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 function LoginForm({ setAuth }) {
   const navigate = useNavigate();
-  // const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     navigate("/moodTracker");
-  // }
 
   const [inputs, setInputs] = useState({
     email: "",
@@ -34,6 +30,7 @@ function LoginForm({ setAuth }) {
 
       if (parseRes.token) {
         localStorage.setItem("token", parseRes.token);
+        localStorage.setItem("email", email);
         setAuth(true);
         alert("Login successful!");
         navigate("/dashboard");

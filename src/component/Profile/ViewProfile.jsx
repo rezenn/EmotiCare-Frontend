@@ -59,7 +59,7 @@ function ViewProfile() {
         <h2>Activity</h2>
         <ul className={styles.statsList}>
           <StatItem label="Mood entry" value="234" />
-          <StatItem label="Mood streak" value="54🔥" />
+          <StatItem label="Mood streaks" value="54🔥" />
           <StatItem label="Journal entry" value="198" />
           <StatItem label="Challenges completed" value="314" />
           <StatItem label="Challenges added" value="124" />
