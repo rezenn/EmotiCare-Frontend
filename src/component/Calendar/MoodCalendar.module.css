@@ -69,6 +69,7 @@ button {
     width: 368px;
 }
 
+
 span {
     width: 200px;
     font-size: 35px;
@@ -77,6 +78,9 @@ span {
     color: #6D8E00;
 }
 
+.emoji {
+    width: 40px;
+}
 
 .emojiPicker {
     position: fixed;

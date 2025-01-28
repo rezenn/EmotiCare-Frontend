@@ -29,6 +29,7 @@ body {
     height: auto;
     display: block;
     margin-top: 25px auto 10px auto;
+    z-index: 5;
 }
 
 .nav {
@@ -65,11 +66,10 @@ body {
 .user {
     width: 40px;
     height: 40px;
-    margin-top: 10px;
-    margin-left: 70px;
-
+    margin-right: 200px;
     border-radius: 50%;
-    border: 1px solid #333;
+    border: 2px solid #333;
+    padding: 2px;
 }
 
 .hamburger {
@@ -135,6 +135,7 @@ body {
 
 
 @media (max-width: 768px) {
+
     .hamburger {
         display: flex;
     }

@@ -9,6 +9,8 @@ function Challenge() {
 
   useEffect(() => {
     fetchChallenges();
+    const intervalid = setInterval(fetchChallenges, 500);
+    return () => clearInterval(intervalid);
   }, []);
 
   const fetchChallenges = async () => {

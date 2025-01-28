@@ -50,17 +50,42 @@ ul {
     display: inline;
     align-items: center;
     list-style: none;
+
 }
 
 .inputCheckbox {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     margin-right: 10px;
-    border: 2px solid #ccc;
     cursor: pointer;
-    color: #fdfdfd;
-    accent-color: #E38A33;
+    appearance: none;
+    position: relative;
+    border: 2px solid #ccc;
+    border-radius: 49%;
+    background-color: transparent;
+    padding: 2px;
+    margin: 1rem 0.8rem 0 0;
+}
 
+.inputCheckbox::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+}
+
+.inputCheckbox:checked::before {
+    background-color: #E38A33;
+}
+
+.inputCheckbox:checked {
+    border-color: #E38A33;
 }
 
 .challengeName {

@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.diplayProfile {
+    display: grid;
+    grid-template-columns: 520px auto auto;
+}
+
+.verticalLine {
+    width: 2px;
+    height: auto;
+    /* Adjust height as needed */
+    background-color: #ccc;
+    margin: 100px 0 20px 50px;
+}

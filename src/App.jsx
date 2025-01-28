@@ -13,6 +13,8 @@ import MoodTracker from "./page/MoodTrackerPage";
 import Settings from "./page/Settings";
 import Dashboard from "./page/Dashboard";
 import DailyChallenge from "./page/DailyChallenge";
+import Profile from "./page/Profile";
+import EditProfile from "./page/EditProfile";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -70,6 +72,26 @@ function App() {
           path="/dailyChallenge"
           element={
             isAuthenticated ? <DailyChallenge /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            isAuthenticated ? (
+              <Profile setAuth={setAuth} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/editProfile"
+          element={
+            isAuthenticated ? (
+              <EditProfile setAuth={setAuth} />
+            ) : (
+              <Navigate to="/login" />
+            )
           }
         />
         <Route

@@ -1,17 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Basic&family=Baumans&family=Doto:wght@100..900&family=Faculty+Glyphic&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Anta&family=Baumans&family=Doto:wght@100..900&family=Marmelad&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
 .challengeContainer {
     padding-top: 10px;
-    margin: 70px 0 0 110px;
+    margin: 70px 0 50px 110px;
     width: 690px;
     min-height: 455px;
     background-color: hsla(0, 0%, 100%, 0.34);
@@ -52,14 +50,37 @@ ul {
 }
 
 .inputCheckbox {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     margin-right: 10px;
-    border: 2px solid #ccc;
     cursor: pointer;
-    color: #fdfdfd;
-    accent-color: #E38A33;
+    appearance: none;
+    position: relative;
+    border: 2px solid #ccc;
+    border-radius: 49%;
+    background-color: transparent;
+    padding: 2px;
+}
 
+.inputCheckbox::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+}
+
+.inputCheckbox:checked::before {
+    background-color: #E38A33;
+}
+
+.inputCheckbox:checked {
+    border-color: #E38A33;
 }
 
 .challengeName {
@@ -68,7 +89,6 @@ ul {
     color: #333333aa;
     font-family: 'Afacad', serif;
     font-size: 1.6rem;
-
 }
 
 .challengeName:first-child {
@@ -85,7 +105,6 @@ ul {
     background-color: #89CFF0;
     border-radius: 15px;
     border: 1px solid #333;
-
 }
 
 .addChallenge {

@@ -34,10 +34,16 @@ function Navbar() {
           <li>
             <Link to="/settings">Settings</Link>
           </li>
+          <li>
+            <Link to="/profile">
+              <img
+                className="user"
+                src="./src/assets/ProfileImg.jpg"
+                alt="Users"
+              />
+            </Link>
+          </li>
         </ul>
-        <Link to="/profile">
-          <img className="user" src="./src/assets/User.png" alt="Users" />
-        </Link>
       </nav>
       <div className="hamburger" onClick={toggleMenu}>
         <div></div>

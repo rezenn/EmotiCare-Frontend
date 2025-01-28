@@ -18,6 +18,7 @@
 .containerRight {
     display: grid;
     grid-template-rows: auto auto auto;
+    gap: 0;
 }
 
 .title {
@@ -26,24 +27,4 @@
 
 .titleName {
     margin: 10px 0 0 110px;
-}
-
-.dashboardChallenge {
-    grid-area: challenge;
-}
-
-.dashboardChallenges {
-    grid-area: challenges;
-}
-
-.timer {
-    grid-area: timer;
-}
-
-.note {
-    grid-area: note;
-}
-
-.mood {
-    grid-area: mood;
 }
