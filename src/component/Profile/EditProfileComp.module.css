@@ -7,7 +7,7 @@
 .container {
     width: 600px;
     height: 750px;
-    margin: 100px 0 40px 0px;
+    margin: 100px 0 40px 500px;
     padding: 20px 0px 0 0px;
     border: 1px solid #333;
     border-radius: 20px;
@@ -32,15 +32,15 @@
 .profileImg {
     width: 100px;
     height: 100px;
-    margin-left: 70px;
+    margin-left: 140px;
     padding: 5px;
-    border: 2px solid #333;
+    border: 2px solid #ddd;
     border-radius: 50%;
 }
 
 .changeImgBtn {
     width: 130px;
-    /* margin: 40px 0 0 0; */
+    margin: 40px 0 0 100px;
     font-size: 1.1rem;
     border: none;
     background-color: #33333300;

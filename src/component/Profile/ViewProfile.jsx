@@ -1,28 +1,92 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ViewProfile.module.css";
 import { Link } from "react-router-dom";
+import defaultUserImage from "../../assets/ProfileImg.jpg";
 
 function ViewProfile() {
+  const [profileImg, setProfileImg] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState("");
+  const [gender, setGender] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [joinedOn, setJoinedOn] = useState("");
+  const [isFetching, setIsFetching] = useState(true);
+
+  useEffect(() => {
+    const loggedInEmail = localStorage.getItem("email");
+    const token = localStorage.getItem("token");
+
+    if (!loggedInEmail || !token) {
+      alert("No logged-in user found.");
+      setIsFetching(false);
+      return;
+    }
+
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/profile/${loggedInEmail}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+        const userData = await response.json();
+        const formattedBirthday = userData.birthday
+          ? userData.birthday.split("T")[0]
+          : "";
+        setFullName(userData.full_name || "");
+        setUsername(userData.user_name || "");
+        setGender(userData.gender || "");
+        setEmail(userData.user_email || "");
+        setBirthday(formattedBirthday || "");
+        setProfileImg(userData.profile_picture_url || "");
+        setJoinedOn(
+          userData.created_at
+            ? new Date(userData.created_at).toLocaleDateString()
+            : ""
+        );
+      } catch (error) {
+        console.error(error.message);
+        alert("Failed to fetch user");
+      } finally {
+        setIsFetching(false);
+      }
+    };
+    fetchUserData();
+  }, []);
+
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className={styles.container}>
       {/* Profile Header Section */}
       <section className={styles.profileHeader}>
         <img
           className={styles.profileImg}
-          src="./src/assets/ProfileImg.jpg"
+          src={
+            profileImg ? `http://localhost:5000${profileImg}` : defaultUserImage
+          }
           alt="User Profile"
         />
         <div className={styles.profileDetails}>
-          <span className={styles.fullname}>Rijen Khadgi</span>
+          <span className={styles.fullname}>{fullName}</span>
           <ProfileField
             className={styles.profileField}
             label="Username"
-            value="Happy Day"
+            value={username}
           />
           <ProfileField
             className={styles.profileField}
             label="Email"
-            value="rezenkhadgi@gmail.com"
+            value={email}
           />
           <Link className={styles.editBtn} to="/editProfile">
             Edit Profile
@@ -38,17 +102,17 @@ function ViewProfile() {
         <ProfileField
           className={styles.profileField}
           label="Birthday"
-          value="14/03/2001"
+          value={birthday}
         />
         <ProfileField
           className={styles.profileField}
           label="Gender"
-          value="Male"
+          value={gender}
         />
         <ProfileField
           className={styles.profileField}
           label="Joined on"
-          value="23/08/2024"
+          value={joinedOn}
         />
       </section>
 
