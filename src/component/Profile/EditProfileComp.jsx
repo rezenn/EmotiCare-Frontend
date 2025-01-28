@@ -1,8 +1,11 @@
 import { useRef, useState, useEffect } from "react";
 import styles from "./EditProfileComp.module.css";
 import defaultUserImage from "../../assets/ProfileImg.jpg";
+import { useNavigate } from "react-router-dom";
 
 function EditProfileComp() {
+  const navigate = useNavigate();
+
   const [profileImgFile, setProfileImgFile] = useState(null);
   const [profileImg, setProfileImg] = useState("");
   const [fullName, setFullName] = useState("");
@@ -86,9 +89,9 @@ function EditProfileComp() {
       formData.append("full_name", fullName);
       formData.append("birthday", birthday); // Ensure the date is in YYYY-MM-DD format
       formData.append("gender", gender);
-      if (profileImgFile) {
-        formData.append("userImage", profileImgFile); // Append the file for upload
-      }
+
+      formData.append("userImage", profileImgFile);
+
       formData.append("email", email);
 
       const token = localStorage.getItem("token");
@@ -106,8 +109,8 @@ function EditProfileComp() {
       }
 
       const data = await response.json();
-      console.log("Profile updated successfully:", data);
       alert("Profile updated successfully!");
+      navigate("/profile");
     } catch (error) {
       console.error(error.message);
       alert(error.message || "Failed to update profile. Please try again.");

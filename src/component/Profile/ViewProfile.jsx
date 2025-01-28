@@ -10,7 +10,7 @@ function ViewProfile() {
   const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
-  const [joinedOn, setJoinedOn] = useState("");
+  const [createdAt, setCreatedAt] = useState("");
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ function ViewProfile() {
         setEmail(userData.user_email || "");
         setBirthday(formattedBirthday || "");
         setProfileImg(userData.profile_picture_url || "");
-        setJoinedOn(
+        setCreatedAt(
           userData.created_at
             ? new Date(userData.created_at).toLocaleDateString()
             : ""
@@ -77,7 +77,7 @@ function ViewProfile() {
           alt="User Profile"
         />
         <div className={styles.profileDetails}>
-          <span className={styles.fullname}>{fullName}</span>
+          <h2 className={styles.fullname}>{fullName}</h2>
           <ProfileField
             className={styles.profileField}
             label="Username"
@@ -99,6 +99,7 @@ function ViewProfile() {
       {/* About Section */}
       <section className={styles.aboutSection}>
         <h2>About</h2>
+        <hr />
         <ProfileField
           className={styles.profileField}
           label="Birthday"
@@ -112,7 +113,7 @@ function ViewProfile() {
         <ProfileField
           className={styles.profileField}
           label="Joined on"
-          value={joinedOn}
+          value={createdAt}
         />
       </section>
 
@@ -121,6 +122,7 @@ function ViewProfile() {
       {/* Stats Section */}
       <section className={styles.statsSection}>
         <h2>Activity</h2>
+        <hr />
         <ul className={styles.statsList}>
           <StatItem label="Mood entry" value="234" />
           <StatItem label="Mood streaks" value="54🔥" />
