@@ -1,0 +1,11 @@
+.journalContainer {
+    display: grid;
+    grid-template-columns: 620px auto auto;
+}
+
+.verticalLine {
+    width: 2px;
+    height: auto;
+    background-color: #53515190;
+    margin: 90px 10px 10px 30px;
+}

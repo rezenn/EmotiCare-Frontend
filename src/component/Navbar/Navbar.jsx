@@ -69,7 +69,7 @@ function Navbar() {
             <Link to="/dailyChallenge">Daily Challenge</Link>
           </li>
           <li>
-            <Link to="/insight">Insight</Link>
+            <Link to="/journal">Journal</Link>
           </li>
           <li>
             <Link to="/resources">Resources</Link>

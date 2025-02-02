@@ -12,7 +12,6 @@
 .verticalLine {
     width: 2px;
     height: auto;
-    /* Adjust height as needed */
-    background-color: #ccc;
+    background-color: #53515190;
     margin: 100px 0 20px 50px;
 }

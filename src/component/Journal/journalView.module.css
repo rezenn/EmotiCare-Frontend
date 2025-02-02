@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Reem+Kufi:wght@400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+.viewConatiner {
+    margin: 100px;
+}
+
+.journal {
+    position: absolute;
+    top: 76px;
+    left: 690px;
+    width: 750px;
+    height: 690px;
+    background-color: hsla(0, 0%, 100%, 0.34);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* journal Header */
+.journal_header {
+    display: grid;
+    grid-template-columns: 100px auto;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.journal_title {
+    font-family: 'Afacad', sans-serif;
+    font-size: 2rem;
+    color: black;
+    width: auto;
+}
+
+/* Buttons */
+.back_button {
+    width: 100px;
+    height: 45px;
+    padding: 8px;
+    margin: 10px;
+    margin-left: 520px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007bff;
+    border-radius: 15px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    border: none;
+
+}
+
+.back_button>svg {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    transition: all 0.4s ease-in;
+}
+
+.back_button:hover>svg {
+    font-size: 1.2em;
+    transform: translateX(-5px);
+}
+
+.back_button:hover {
+    box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+    transform: translateY(-2px);
+}
+
+.backText {
+    color: #fff;
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 0.9rem;
+
+}
+
+.journal_content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* journal List */
+.journal_list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* journal Preview */
+.journal_preview {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.journal_preview:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.01);
+}
+
+/* journal Details */
+.journal_details {
+    padding: 10px;
+}
+
+.journal_details h3 {
+    margin-top: 0;
+    font-family: 'Afacad', sans-serif;
+    font-size: 24px;
+    color: #333;
+}
+
+.journal_details h2 {
+    margin-top: 0;
+    font-family: 'Afacad', sans-serif;
+    font-size: 24px;
+    color: #333;
+}
+
+.journal_details div {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.journal_details {
+    background-color: #fff;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+.selectedTitle {
+    margin: 0;
+    padding: 0;
+}

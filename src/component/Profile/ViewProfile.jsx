@@ -20,8 +20,7 @@ function ViewProfile() {
     if (!loggedInEmail || !token) {
       alert("No logged-in user found.");
       setIsFetching(false);
-      return;
-    }
+      return;    }
 
     const fetchUserData = async () => {
       try {

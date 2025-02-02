@@ -9,9 +9,9 @@
     height: 750px;
     margin: 100px 0 40px 500px;
     padding: 20px 0px 0 0px;
-    border: 1px solid #333;
     border-radius: 20px;
     background-color: #CCD5AE;
+    box-shadow: 5px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form {

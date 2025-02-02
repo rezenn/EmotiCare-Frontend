@@ -1,0 +1,61 @@
+div .Editor {
+    width: 550px;
+    min-height: 350px;
+    max-height: 450px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.ql-toolbar,
+.ql-snow {
+    margin: 0px 0px;
+    border-radius: 5px 5px 0 0;
+}
+
+.ql-container {
+    border-radius: 0 0 5px 5px;
+}
+
+.ql-formats {
+    width: fit-content;
+    padding: 0;
+    margin: 0px;
+    height: fit-content;
+    font-size: 1px;
+}
+
+.ql-formats button {
+    margin: 5px 0;
+    padding: 0;
+    height: fit-content;
+    width: fit-content;
+}
+
+span .ql-picker-option,
+.ql-picker-item {
+    color: #000;
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+    height: fit-content;
+    font: 0.5em sans-serif;
+}
+
+span .ql-picker-label {
+    font: 1em sans-serif;
+    color: #000;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.post-content img {
+    max-height: 400px;
+}

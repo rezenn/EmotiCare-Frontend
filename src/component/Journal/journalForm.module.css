@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Reem+Kufi:wght@400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 76px 0 20px 20px;
+    padding: 10px 5px;
+    width: fit-content;
+    height: fit-content;
+    background-color: hsla(0, 0%, 100%, 0.34);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.journalTitle {
+    font-family: 'Afacad', sans-serif;
+    font-size: 2rem;
+    color: black;
+    width: auto;
+}
+
+.journalForm {
+    padding: 5px 15px 10px 15px;
+}
+
+.journalInput {
+    width: 550px;
+}
+
+.journalDate {
+    width: 270px;
+    margin-right: 10px;
+}
+
+.journalTime {
+    width: 270px;
+}
+
+.journalArea {
+    width: 550px;
+    min-height: 450px;
+    max-height: 450px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.journalSubmit {
+    width: 515px;
+    height: fit-content;
+    margin: 5px 0 10px 20px;
+    padding: 5px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    border: none;
+}

@@ -15,7 +15,7 @@ import Dashboard from "./page/Dashboard";
 import DailyChallenge from "./page/DailyChallenge";
 import Profile from "./page/Profile";
 import EditProfile from "./page/EditProfile";
-
+import Journal from "./page/JournalPage";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return !!localStorage.getItem("token"); // Check if token exists on initialization
@@ -73,6 +73,10 @@ function App() {
           element={
             isAuthenticated ? <DailyChallenge /> : <Navigate to="/login" />
           }
+        />
+        <Route
+          path="/journal"
+          element={isAuthenticated ? <Journal /> : <Navigate to="/login" />}
         />
         <Route
           path="/profile"
