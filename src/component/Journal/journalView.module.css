@@ -54,21 +54,17 @@
 
 }
 
-.back_button>svg {
-    margin-right: 5px;
-    margin-left: 5px;
-    font-size: 20px;
-    transition: all 0.4s ease-in;
-}
-
-.back_button:hover>svg {
-    font-size: 1.2em;
-    transform: translateX(-5px);
-}
-
 .back_button:hover {
-    box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
-    transform: translateY(-2px);
+    background-color: #2d91fd;
+    transform: scale(1.1);
+}
+
+.back_button:active {
+    transform: scale(0.9);
+}
+
+.back_button {
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .backText {

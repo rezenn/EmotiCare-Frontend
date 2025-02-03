@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-
-import "./login.css";
 import { useState } from "react";
+import axios from "../axios/axios"; // Import Axios instance
+import "./login.css";
 
 function RegisterForm({ setAuth }) {
   const [inputs, setInputs] = useState({
@@ -11,103 +11,90 @@ function RegisterForm({ setAuth }) {
   });
 
   const { name, email, password } = inputs;
-  const onChange = (e) => {
+
+  const onChange = (e) =>
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
     });
-  };
 
-  const onSubmitFrom = async (e) => {
+  const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      const body = { name, email, password };
-      const response = await fetch("http://localhost:5000/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
+      const response = await axios.post("/auth/register", {
+        name,
+        email,
+        password,
       });
 
-      // Check if the response is ok (status 2xx)
-      if (response.ok) {
-        const parseRes = await response.json();
-        if (parseRes.token) {
-          localStorage.setItem("token", parseRes.token);
-          setAuth(true);
-          alert("Registration successful!");
-        } else {
-          console.error("Missing token.");
-        }
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        setAuth(true);
+        alert("Registration successful!");
       } else {
-        const errorResponse = await response.text(); // get the response as text in case it's not JSON
-        console.error("Server error:", errorResponse);
+        console.error("Missing token.");
       }
     } catch (error) {
-      console.error("Error:", error.message);
+      console.error("Error:", error.response?.data || error.message);
     }
   };
 
   return (
-    <>
-      <div className="main">
-        <section>
-          <img
-            className="logoSection"
-            src="./src/assets/logoImage.png"
-            alt="logo"
+    <div className="main">
+      <section>
+        <img
+          className="logoSection"
+          src="./src/assets/logoImage.png"
+          alt="logo"
+        />
+        <h3>Welcome, Let's create an account</h3>
+        <form onSubmit={onSubmitForm}>
+          <label id="Username">Username</label>
+          <br />
+          <input
+            type="text"
+            placeholder="Username"
+            name="name"
+            value={name}
+            onChange={onChange}
+            required
           />
-          <h3>Welcome, Let's create an account</h3>
-          <form onSubmit={onSubmitFrom}>
-            <label id="Username">Username</label>
-            <br />
-            <input
-              type="text"
-              placeholder="Username"
-              name="name"
-              value={name}
-              onChange={(e) => onChange(e)}
-              required
-            />
-            <br />
-            <label id="Login">Email</label>
-            <br />
-            <input
-              type="email"
-              placeholder="Email Address"
-              name="email"
-              value={email}
-              onChange={(e) => onChange(e)}
-              required
-            />
-            <br />
-            <label id="Password">Password</label>
-            <br />
-            <input
-              type="password"
-              placeholder="Enter password"
-              name="password"
-              value={password}
-              onChange={(e) => onChange(e)}
-              required
-            />
-            <br />
-
-            <button className="signinButton">Register</button>
-          </form>
-          <hr className="line" />
-          <div className="linkPage">
-            <span>
-              Already have an account?
-              <Link className="link" to="/login">
-                Login
-              </Link>
-            </span>
-          </div>
-        </section>
-      </div>
-    </>
+          <br />
+          <label id="Login">Email</label>
+          <br />
+          <input
+            type="email"
+            placeholder="Email Address"
+            name="email"
+            value={email}
+            onChange={onChange}
+            required
+          />
+          <br />
+          <label id="Password">Password</label>
+          <br />
+          <input
+            type="password"
+            placeholder="Enter password"
+            name="password"
+            value={password}
+            onChange={onChange}
+            required
+          />
+          <br />
+          <button className="signinButton">Register</button>
+        </form>
+        <hr className="line" />
+        <div className="linkPage">
+          <span>
+            Already have an account?
+            <Link className="link" to="/login">
+              Login
+            </Link>
+          </span>
+        </div>
+      </section>
+    </div>
   );
 }
 

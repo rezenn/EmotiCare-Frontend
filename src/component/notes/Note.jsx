@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "../../axios/axios";
 import "./note.css";
 
 function Note() {
@@ -15,19 +16,13 @@ function Note() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:5000/note", {
-        method: "GET",
+      const response = await axios.get("/note", {
         headers: { token },
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch notes.");
-      }
-
-      const data = await response.json();
-      if (data.length > 0) {
-        setNote(data[0].note_desc || "");
-        setNoteId(data[0].note_id);
+      if (response.data.length > 0) {
+        setNote(response.data[0].note_desc || "");
+        setNoteId(response.data[0].note_id);
       }
     } catch (error) {
       console.error(error.message);
@@ -42,29 +37,18 @@ function Note() {
 
       const token = localStorage.getItem("token");
 
-      const url = "http://localhost:5000/note";
+      const url = "/note";
       const method = noteId ? "PUT" : "POST";
 
-      const response = await fetch(url, {
+      const response = await axios({
         method,
-        headers: {
-          token,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          noteId: noteId,
-          noteDesc: note,
-        }),
+        url,
+        headers: { token },
+        data: { noteId, noteDesc: note },
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to save note.");
-      }
-
-      const result = await response.json();
-
       if (!noteId) {
-        setNoteId(result.note_id);
+        setNoteId(response.data.note_id);
       }
     } catch (error) {
       console.error(error.message);

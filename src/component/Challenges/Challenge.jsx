@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../../axios/axios";
 import styles from "./Challenge.module.css";
 
 function Challenge() {
@@ -21,7 +21,7 @@ function Challenge() {
         return;
       }
 
-      const response = await axios.get("http://localhost:5000/challenge/all", {
+      const response = await axios.get("/challenge/all", {
         headers: { token },
       });
 
@@ -50,7 +50,7 @@ function Challenge() {
 
       const isPreloaded = false;
       const response = await axios.post(
-        "http://localhost:5000/challenge/add",
+        "/challenge/add",
         { title: challengeInput, isPreloaded },
         {
           headers: { token },
@@ -74,7 +74,7 @@ function Challenge() {
       }
 
       const response = await axios.patch(
-        "http://localhost:5000/challenge/mark-done",
+        "/challenge/mark-done",
         { challengeID: challenge.challenge_id },
         {
           headers: { token },
@@ -106,7 +106,7 @@ function Challenge() {
       }
 
       const response = await axios.delete(
-        `http://localhost:5000/challenge/delete/${challenge.challenge_id}`,
+        `/challenge/delete/${challenge.challenge_id}`,
         {
           headers: { token },
         }

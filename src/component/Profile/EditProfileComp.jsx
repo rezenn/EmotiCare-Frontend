@@ -1,10 +1,12 @@
 import { useRef, useState, useEffect } from "react";
 import styles from "./EditProfileComp.module.css";
+import axios from "../../axios/axios"; // Ensure axios instance is correctly configured
 import defaultUserImage from "../../assets/ProfileImg.jpg";
 import { useNavigate } from "react-router-dom";
 
 function EditProfileComp() {
   const navigate = useNavigate();
+  const fileInputRef = useRef(null);
 
   const [profileImgFile, setProfileImgFile] = useState(null);
   const [profileImg, setProfileImg] = useState("");
@@ -15,7 +17,6 @@ function EditProfileComp() {
   const [birthday, setBirthday] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isFetching, setIsFetching] = useState(true);
-  const fileInputRef = useRef(null);
 
   useEffect(() => {
     const loggedInEmail = localStorage.getItem("email");
@@ -27,43 +28,28 @@ function EditProfileComp() {
       return;
     }
 
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:5000/profile/${loggedInEmail}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch user data");
-        }
-
-        const userData = await response.json();
-
-        // Format the date to YYYY-MM-DD if it exists
-        const formattedBirthday = userData.birthday
-          ? userData.birthday.split("T")[0]
-          : "";
-
+    axios
+      .get(`/profile/${loggedInEmail}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const userData = response.data;
         setFullName(userData.full_name || "");
         setUsername(userData.user_name || "");
         setGender(userData.gender || "");
         setEmail(userData.user_email || "");
-        setBirthday(formattedBirthday); // Set the formatted date
-        setProfileImg(userData.profile_picture_url || ""); // Set the image URL from the server
-      } catch (error) {
-        console.error(error.message);
-        alert("Failed to fetch user data. Please try again.");
-      } finally {
+        setBirthday(userData.birthday?.split("T")[0] || ""); // Format date
+        setProfileImg(userData.profile_picture_url || "");
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Failed to fetch user data.");
+      })
+      .finally(() => {
         setIsFetching(false);
-      }
-    };
-
-    fetchUserData();
+      });
   }, []);
 
   const editProfileImg = () => {
@@ -74,8 +60,8 @@ function EditProfileComp() {
     const file = e.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setProfileImgFile(file); // Store the file object
-      setProfileImg(imageUrl); // Store the temporary URL
+      setProfileImgFile(file);
+      setProfileImg(imageUrl);
     }
   };
 
@@ -87,33 +73,26 @@ function EditProfileComp() {
       const formData = new FormData();
       formData.append("user_name", username);
       formData.append("full_name", fullName);
-      formData.append("birthday", birthday); // Ensure the date is in YYYY-MM-DD format
+      formData.append("birthday", birthday);
       formData.append("gender", gender);
-
-      formData.append("userImage", profileImgFile);
-
+      if (profileImgFile) {
+        formData.append("userImage", profileImgFile);
+      }
       formData.append("email", email);
 
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/profile/${email}`, {
-        method: "PUT",
+      const response = await axios.put(`/profile/${email}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
-        body: formData,
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to update profile");
-      }
-
-      const data = await response.json();
       alert("Profile updated successfully!");
       navigate("/profile");
     } catch (error) {
-      console.error(error.message);
-      alert(error.message || "Failed to update profile. Please try again.");
+      console.error(error);
+      alert(error.response?.data?.error || "Failed to update profile.");
     } finally {
       setIsLoading(false);
     }
@@ -131,10 +110,10 @@ function EditProfileComp() {
             className={styles.profileImg}
             src={
               profileImgFile
-                ? URL.createObjectURL(profileImgFile) // For newly uploaded images
+                ? URL.createObjectURL(profileImgFile)
                 : profileImg
-                ? `http://localhost:5000${profileImg}` // For images fetched from the server
-                : defaultUserImage // Fallback to default image
+                ? `http://localhost:5000${profileImg}`
+                : defaultUserImage
             }
             alt="User"
           />
@@ -229,7 +208,6 @@ function EditProfileComp() {
           onChange={(e) => setBirthday(e.target.value)}
         />
         <br />
-
         <button className={styles.updateBtn} type="submit" disabled={isLoading}>
           {isLoading ? "Updating..." : "Update Profile"}
         </button>

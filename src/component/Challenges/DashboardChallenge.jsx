@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./DashboardChallenge.module.css";
-import axios from "axios";
+import axios from "../../axios/axios";
 
 function DashboardChallenge() {
   const [challenges, setChallenges] = useState([]);
@@ -15,12 +15,7 @@ function DashboardChallenge() {
   const fetchChallenges = async () => {
     try {
       const token = localStorage.getItem("token");
-      if (!token) {
-        console.error("No token found in localStorage");
-        return;
-      }
-
-      const response = await axios.get("http://localhost:5000/challenge/all", {
+      const response = await axios.get("/challenge/all", {
         headers: { token },
       });
 
@@ -35,17 +30,11 @@ function DashboardChallenge() {
     }
   };
   const toggleChallenge = async (index) => {
-    const challenge = challenges[index];
-
     try {
       const token = localStorage.getItem("token");
-      if (!token) {
-        console.error("No token found in localStorage");
-        return;
-      }
 
       const response = await axios.patch(
-        "http://localhost:5000/challenge/mark-done",
+        "/challenge/mark-done",
         { challengeID: challenge.challenge_id },
         {
           headers: { token },

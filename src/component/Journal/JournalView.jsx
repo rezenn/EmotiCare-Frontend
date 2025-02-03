@@ -90,7 +90,6 @@ Scherzinger was a judge on The X Factor when Payne auditioned in 2010 as a solo 
           {!selectedJournal ? (
             <>
               <div className={styles.journal_title}>Journals</div>
-              {/* <button className="create_button">Create Request</button> */}
             </>
           ) : (
             <>

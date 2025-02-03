@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import axios from "../../axios/axios";
 import styles from "./MoodCalendar.module.css";
 
 const MoodCalendar = () => {
@@ -46,18 +47,12 @@ const MoodCalendar = () => {
         throw new Error("No token found");
       }
 
-      const response = await fetch("http://localhost:5000/moodTracker", {
-        method: "GET",
+      const response = await axios.get("/moodTracker", {
         headers: { token },
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch username.");
-      }
-
-      const parseRes = await response.json();
-      setName(parseRes.user_name);
-      setUserId(parseRes.user_id);
+      setName(response.data.user_name);
+      setUserId(response.data.user_id);
     } catch (error) {
       console.error(error.message);
     }
@@ -68,19 +63,12 @@ const MoodCalendar = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:5000/moodTracker/mood", {
-        method: "GET",
+      const response = await axios.get("/moodTracker/mood", {
         headers: { token },
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch moods");
-      }
-
-      const data = await response.json();
-
       const moods = {};
-      data.forEach((mood) => {
+      response.data.forEach((mood) => {
         const formattedDate = getLocalDate(new Date(mood.mood_date)); // Normalize date format
         moods[formattedDate] = mood.mood_emoji;
       });
@@ -125,21 +113,17 @@ const MoodCalendar = () => {
         throw new Error("No token found");
       }
 
-      const response = await fetch("http://localhost:5000/moodTracker", {
-        method: "POST",
-        headers: { token, "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const response = await axios.post(
+        "/moodTracker",
+        {
           moodDate: formattedDate,
           moodEmoji: emoji,
           moodLabel: label,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to post mood");
-      }
-
-      const newMood = await response.json();
+        },
+        {
+          headers: { token, "Content-Type": "application/json" },
+        }
+      );
     } catch (error) {
       console.error("Error posting mood:", error.message);
     }
