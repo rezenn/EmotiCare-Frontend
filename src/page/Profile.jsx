@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../component/Navbar/Navbar";
 import styles from "./Profile.module.css";
-import defaultUserImage from "../assets/ProfileImg.jpg"; // Adjust path as needed
 import ViewProfile from "../component/Profile/ViewProfile";
 import MoodLineChart from "../component/Chart/MoodLineChart";
 
@@ -13,26 +12,27 @@ function Profile() {
     try {
       const token = localStorage.getItem("token");
       if (!token || token === "undefined") {
-        setAuth(false);
         throw new Error("No token found");
       }
 
-      const emojiToNumber = {
-        "😀": 5,
-        "🤩": 5,
-        "😇": 4,
-        "😌": 4,
-        "😮": 5,
-        "😴": 1,
-        "😐": 4,
-        "🫨": 3,
-        "😰": 1,
-        "😤": 2,
-        "😒": 2,
-        "😕": 3,
-        "😔": 1,
-        "😡": 3,
+      const emojiToMood = {
+        "😀": "Happy",
+        "🤩": "Excited",
+        "😇": "Blessed",
+        "😌": "Relaxed",
+        "😮": "Surprised",
+        "😴": "Tired",
+        "😐": "Indifferent",
+        "🫨": "Overwhelmed",
+        "😰": "Nervous",
+        "😤": "Enraged",
+        "😒": "Annoyed",
+        "😕": "Confused",
+        "☹️": "Disappointed",
+        "😡": "Angry",
+        "😔": "Glommy",
       };
+
       const response = await fetch("http://localhost:5000/moodTracker", {
         method: "GET",
         headers: { token },
@@ -48,7 +48,7 @@ function Profile() {
       if (Array.isArray(parseRes.moods)) {
         const moodsFormatted = parseRes.moods.map((mood) => ({
           date: new Date(mood.mood_date).toISOString().split("T")[0],
-          mood: emojiToNumber[mood.mood_emoji] || 0, // Convert emoji to number
+          mood: emojiToMood[mood.mood_emoji] || "Unknown", // Convert emoji to mood name
         }));
         setMoodData(moodsFormatted);
       }
@@ -60,11 +60,12 @@ function Profile() {
   useEffect(() => {
     getNameAndMoods();
   }, []);
+
   return (
     <>
       <Navbar activePage="profile" />
       <div className={styles.profileConatiner}>
-        <div className={styles.diplayProfile}>
+        <div className={styles.displayProfile}>
           <ViewProfile className={styles.View} />
           <div className={styles.verticalLine}></div>
         </div>

@@ -28,7 +28,7 @@ const MoodCalendar = ({ onMoodDataChange }) => {
     { emoji: "😤", label: "Enraged" },
     { emoji: "😒", label: "Annoyed" },
     { emoji: "😕", label: "Confused" },
-    { emoji: "😔", label: "Disappointed" },
+    { emoji: "😟", label: "Disappointed" },
     { emoji: "😡", label: "Angry" },
     { emoji: "😔", label: "Gloomy" },
   ];
@@ -36,18 +36,19 @@ const MoodCalendar = ({ onMoodDataChange }) => {
   const emojiToNumber = {
     "😀": 5,
     "🤩": 5,
-    "😇": 4,
+    "😇": 5,
     "😌": 4,
-    "😮": 5,
-    "😴": 1,
+    "😮": 4,
+    "😴": 3,
     "😐": 4,
-    "🫨": 3,
-    "😰": 1,
-    "😤": 2,
+    "🫨": 2,
+    "😰": 2,
+    "😤": 1,
     "😒": 2,
     "😕": 3,
     "😔": 1,
-    "😡": 3,
+    "😡": 1,
+    "😟": 1,
   };
 
   const getLocalDate = (date) => {
@@ -189,8 +190,6 @@ const MoodCalendar = ({ onMoodDataChange }) => {
           onClick={() => setIsPickerOpen(false)}
         />
       )}
-      <MoodLineChart moods={chartData} />{" "}
-      {/* Pass numeric mood data to the chart */}
     </div>
   );
 };

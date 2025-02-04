@@ -16,26 +16,27 @@ function Dashboard({ setAuth }) {
     try {
       const token = localStorage.getItem("token");
       if (!token || token === "undefined") {
-        setAuth(false);
         throw new Error("No token found");
       }
 
-      const emojiToNumber = {
-        "😀": 5,
-        "🤩": 5,
-        "😇": 4,
-        "😌": 4,
-        "😮": 5,
-        "😴": 1,
-        "😐": 4,
-        "🫨": 3,
-        "😰": 1,
-        "😤": 2,
-        "😒": 2,
-        "😕": 3,
-        "😔": 1,
-        "😡": 3,
+      const emojiToMood = {
+        "😀": "Happy",
+        "😇": "Blessed",
+        "🤩": "Excited",
+        "😌": "Relaxed",
+        "😮": "Surprised",
+        "😐": "Indifferent",
+        "😕": "Confused",
+        "😴": "Tired",
+        "😔": "Glommy",
+        "😒": "Annoyed",
+        "🫨": "Overwhelmed",
+        "😰": "Nervous",
+        "☹️": "Disappointed",
+        "😡": "Angry",
+        "😤": "Enraged",
       };
+
       const response = await fetch("http://localhost:5000/moodTracker", {
         method: "GET",
         headers: { token },
@@ -51,9 +52,16 @@ function Dashboard({ setAuth }) {
       if (Array.isArray(parseRes.moods)) {
         const moodsFormatted = parseRes.moods.map((mood) => ({
           date: new Date(mood.mood_date).toISOString().split("T")[0],
-          mood: emojiToNumber[mood.mood_emoji] || 0, // Convert emoji to number
+          mood: emojiToMood[mood.mood_emoji] || "Unknown", // Convert emoji to mood name
         }));
-        setMoodData(moodsFormatted);
+        const today = new Date();
+        const sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(today.getDate() - 6); // 6 days ago + today
+
+        const filteredMoods = moodsFormatted
+          .filter((mood) => new Date(mood.date) >= sevenDaysAgo)
+          .sort((a, b) => new Date(a.date) - new Date(b.date));
+        setMoodData(filteredMoods);
       }
     } catch (error) {
       console.error(error.message);
@@ -73,7 +81,9 @@ function Dashboard({ setAuth }) {
       </div>
       <div className={styles.container}>
         <div className={styles.containerLeft}>
-          <MoodLineChart moods={moodData} /> {/* Pass formatted moods */}
+          <div className={styles.chartConatiner}>
+            <MoodLineChart moods={moodData} />
+          </div>
           <DashboardChallenge className={styles.dashboardChallenge} />
         </div>
         <div className={styles.containerRight}>

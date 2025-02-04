@@ -1,65 +1,72 @@
 import React from "react";
-import { Line } from "react-chartjs-2";
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
   Tooltip,
-  Legend,
-} from "chart.js";
+  ResponsiveContainer,
+} from "recharts";
+import "./lineChart.css";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+function MoodLineChart({ moods }) {
+  // Define the order of moods from negative to positive
+  const moodOrder = [
+    "Enraged",
+    "Angry",
+    "Disappointed",
+    "Nervous",
+    "Overwhelmed",
+    "Annoyed",
+    "Gloomy",
+    "Tired",
+    "Confused",
+    "Indifferent",
+    "Surprised",
+    "Relaxed",
+    "Excited",
+    "Blessed",
+    "Happy",
+  ];
 
-const MoodLineChart = ({ moods }) => {
-  if (!moods || moods.length === 0) {
-    return <p>No mood data available</p>; // Handle empty data case
-  }
+  // Convert mood labels to numerical scale for proper Y-axis placement
+  const moodData = moods.map((mood) => ({
+    date: mood.date,
+    mood: moodOrder.indexOf(mood.mood), // Assign index for Y-axis
+  }));
 
-  const data = {
-    labels: moods.map((mood) => mood.date), // Extract dates
-    datasets: [
-      {
-        label: "Mood Tracker",
-        data: moods.map((mood) => mood.mood), // Extract emoji
-        fill: false,
-        borderColor: "rgb(6, 103, 248)",
-        tension: 0.1,
-      },
-    ],
-  };
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Mood Tracker - Line Graph",
-      },
-    },
-    scales: {
-      y: {
-        ticks: {
-          callback: (value) => value, // Display emoji directly
-        },
-      },
-    },
-  };
-
-  return <Line data={data} options={options} />;
-};
+  return (
+    <div
+      style={{
+        width: "700px",
+        height: "400px",
+        border: "1px solid #ccc",
+        padding: "0px",
+        margin: "auto",
+      }}
+    >
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart
+          data={moodData}
+          margin={{ top: 10, right: 5, left: 0, bottom: 0 }}
+        >
+          <XAxis dataKey="date" />
+          <YAxis
+            tickFormatter={(index) => moodOrder[index] || ""} // Convert index back to label
+            domain={[0, moodOrder.length - 1]} // Keep within range
+            tick={{ fontSize: 10 }}
+          />
+          <Tooltip formatter={(value) => moodOrder[value]} />
+          <Line
+            type="monotone"
+            dataKey="mood"
+            stroke="#8884d8"
+            strokeWidth={2.5}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
 
 export default MoodLineChart;
