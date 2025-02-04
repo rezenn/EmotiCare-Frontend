@@ -3,8 +3,9 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from "../../axios/axios";
 import styles from "./MoodCalendar.module.css";
+import MoodLineChart from "../Chart/MoodLineChart"; // Import the MoodLineChart component
 
-const MoodCalendar = () => {
+const MoodCalendar = ({ onMoodDataChange }) => {
   const [name, setName] = useState("");
   const [userId, setUserId] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -32,121 +33,128 @@ const MoodCalendar = () => {
     { emoji: "😔", label: "Gloomy" },
   ];
 
-  // Convert date to local timezone
+  const emojiToNumber = {
+    "😀": 5,
+    "🤩": 5,
+    "😇": 4,
+    "😌": 4,
+    "😮": 5,
+    "😴": 1,
+    "😐": 4,
+    "🫨": 3,
+    "😰": 1,
+    "😤": 2,
+    "😒": 2,
+    "😕": 3,
+    "😔": 1,
+    "😡": 3,
+  };
+
   const getLocalDate = (date) => {
-    const offset = date.getTimezoneOffset() * 60000; // Convert offset to milliseconds
+    const offset = date.getTimezoneOffset() * 60000;
     const localDate = new Date(date.getTime() - offset);
     return localDate.toISOString().split("T")[0];
   };
 
-  // Fetch user info
-  async function getName() {
+  const getName = async () => {
     try {
       const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("No token found");
-      }
+      if (!token) throw new Error("No token found");
 
-      const response = await axios.get("/moodTracker", {
-        headers: { token },
-      });
-
+      const response = await axios.get("/moodTracker", { headers: { token } });
       setName(response.data.user_name);
       setUserId(response.data.user_id);
     } catch (error) {
       console.error(error.message);
     }
-  }
+  };
 
-  // Fetch moods from the database
-  async function fetchMoods() {
+  const fetchMoods = async () => {
     try {
       const token = localStorage.getItem("token");
+      const response = await axios.get("/moodTracker", { headers: { token } });
 
-      const response = await axios.get("/moodTracker/mood", {
-        headers: { token },
-      });
-
-      const moods = {};
-      response.data.forEach((mood) => {
-        const formattedDate = getLocalDate(new Date(mood.mood_date)); // Normalize date format
-        moods[formattedDate] = mood.mood_emoji;
-      });
-      setMoods(moods);
+      if (Array.isArray(response.data.moods)) {
+        const moods = {};
+        response.data.moods.forEach((mood) => {
+          const formattedDate = getLocalDate(new Date(mood.mood_date));
+          moods[formattedDate] = mood.mood_emoji;
+        });
+        setMoods(moods);
+      } else {
+        console.error("Invalid data structure for moods", response.data.moods);
+      }
       setIsLoading(false);
     } catch (error) {
       console.error(error.message);
       setIsLoading(false);
     }
-  }
+  };
 
-  // Fetch data on component mount
   useEffect(() => {
     getName();
     fetchMoods();
+    const interval = setInterval(fetchMoods, 500);
+    return () => clearInterval(interval);
   }, []);
 
-  // Log the moods state
-  useEffect(() => {}, [moods]);
-
-  // Handle date click
   const handleDateClick = (date) => {
     setCurrentDate(date);
     setIsPickerOpen(true);
   };
 
-  // Handle emoji selection
   const handleEmojiSelect = async (emoji, label) => {
     if (!currentDate) {
       console.error("Invalid date");
       return;
     }
 
-    const formattedDate = getLocalDate(currentDate); // Use local timezone
+    const formattedDate = getLocalDate(currentDate);
     const updatedMoods = { ...moods, [formattedDate]: emoji };
     setMoods(updatedMoods);
     setIsPickerOpen(false);
 
     try {
       const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("No token found");
-      }
+      if (!token) throw new Error("No token found");
 
-      const response = await axios.post(
+      await axios.post(
         "/moodTracker",
         {
           moodDate: formattedDate,
           moodEmoji: emoji,
           moodLabel: label,
         },
-        {
-          headers: { token, "Content-Type": "application/json" },
-        }
+        { headers: { token, "Content-Type": "application/json" } }
       );
+      fetchMoods();
     } catch (error) {
       console.error("Error posting mood:", error.message);
     }
   };
 
-  // Render the tile content
   const tileContent = ({ date, view }) => {
     if (view === "month") {
-      const formattedDate = getLocalDate(date); // Use local timezone
+      const formattedDate = getLocalDate(date);
       return moods[formattedDate] ? <span>{moods[formattedDate]}</span> : null;
     }
   };
 
-  // Show loading state while fetching data
   if (isLoading) {
     return <div>Loading...</div>;
   }
+
+  // Convert moods to numeric values for the chart
+  const chartData = Object.keys(moods).map((date) => ({
+    date,
+    mood: emojiToNumber[moods[date]] || 0,
+  }));
 
   return (
     <div className={styles.CalendarDiv}>
       <img
         className={styles.moodometer}
-        src=".\src\assets\moodometer.png"
+        src="/src/assets/moodometer.png" // Update path as needed
         alt="moodometer"
       />
       <h2 className={styles.moodToday}>How is your mood today, {name}!</h2>
@@ -181,6 +189,8 @@ const MoodCalendar = () => {
           onClick={() => setIsPickerOpen(false)}
         />
       )}
+      <MoodLineChart moods={chartData} />{" "}
+      {/* Pass numeric mood data to the chart */}
     </div>
   );
 };
