@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Basic&family=Baumans&family=Doto:wght@100..900&family=Faculty+Glyphic&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Anta&family=Baumans&family=Doto:wght@100..900&family=Marmelad&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -11,18 +14,28 @@
 
 .diplayProfile {
     display: grid;
-    grid-template-columns: 520px auto auto;
-}
-
-.verticalLine {
-    width: 2px;
-    height: auto;
-    background-color: #53515190;
-    margin: 100px 0 20px 50px;
+    grid-template-columns: 520px auto;
 }
 
 .chartContainer {
-    margin: 130px 30px 10px 20px;
+    margin: 120px 10px 10px 10px;
+    padding: 10px 0 0 0;
     width: 800px;
-    height: auto;
+    height: 480px;
+    background-color: hsla(0, 0%, 100%, 0.34);
+    box-shadow: 5px 7px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.moodChartTitle {
+    margin: 1rem;
+    color: #000;
+    font-family: "Raleway", serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.hr {
+    margin: 7px 10px 10px 10px;
+
 }

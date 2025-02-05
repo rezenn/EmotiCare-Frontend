@@ -3,7 +3,6 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from "../../axios/axios";
 import styles from "./MoodCalendar.module.css";
-import MoodLineChart from "../Chart/MoodLineChart"; // Import the MoodLineChart component
 
 const MoodCalendar = ({ onMoodDataChange }) => {
   const [name, setName] = useState("");
@@ -21,16 +20,16 @@ const MoodCalendar = ({ onMoodDataChange }) => {
     { emoji: "😇", label: "Blessed" },
     { emoji: "😌", label: "Relaxed" },
     { emoji: "😮", label: "Surprised" },
-    { emoji: "😴", label: "Tired" },
     { emoji: "😐", label: "Indifferent" },
+    { emoji: "😕", label: "Confused" },
+    { emoji: "😴", label: "Tired" },
+    { emoji: "😔", label: "Gloomy" },
+    { emoji: "😒", label: "Annoyed" },
     { emoji: "🫨", label: "Overwhelmed" },
     { emoji: "😰", label: "Nervous" },
-    { emoji: "😤", label: "Enraged" },
-    { emoji: "😒", label: "Annoyed" },
-    { emoji: "😕", label: "Confused" },
-    { emoji: "😟", label: "Disappointed" },
+    { emoji: "😞", label: "Disappointed" },
     { emoji: "😡", label: "Angry" },
-    { emoji: "😔", label: "Gloomy" },
+    { emoji: "😤", label: "Enraged" },
   ];
 
   const emojiToNumber = {
@@ -48,7 +47,7 @@ const MoodCalendar = ({ onMoodDataChange }) => {
     "😕": 3,
     "😔": 1,
     "😡": 1,
-    "😟": 1,
+    "😞": 1,
   };
 
   const getLocalDate = (date) => {
@@ -87,7 +86,7 @@ const MoodCalendar = ({ onMoodDataChange }) => {
       }
       setIsLoading(false);
     } catch (error) {
-      console.error(error.message);
+      console.error("Failed to fetch moods:", error.message);
       setIsLoading(false);
     }
   };
@@ -95,11 +94,17 @@ const MoodCalendar = ({ onMoodDataChange }) => {
   useEffect(() => {
     getName();
     fetchMoods();
-    const interval = setInterval(fetchMoods, 500);
-    return () => clearInterval(interval);
   }, []);
 
   const handleDateClick = (date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize today's date for accurate comparison
+
+    if (date > today) {
+      alert("You cannot set a mood for a future date!");
+      return;
+    }
+
     setCurrentDate(date);
     setIsPickerOpen(true);
   };
@@ -145,20 +150,14 @@ const MoodCalendar = ({ onMoodDataChange }) => {
     return <div>Loading...</div>;
   }
 
-  // Convert moods to numeric values for the chart
-  const chartData = Object.keys(moods).map((date) => ({
-    date,
-    mood: emojiToNumber[moods[date]] || 0,
-  }));
-
   return (
     <div className={styles.CalendarDiv}>
       <img
         className={styles.moodometer}
-        src="/src/assets/moodometer.png" // Update path as needed
+        src="/src/assets/moodometer.png"
         alt="moodometer"
       />
-      <h2 className={styles.moodToday}>How is your mood today, {name}!</h2>
+      <h2 className={styles.moodToday}>How is your mood today, {name}?</h2>
       <Calendar
         className={styles.moodCalendar}
         onClickDay={handleDateClick}
@@ -174,6 +173,7 @@ const MoodCalendar = ({ onMoodDataChange }) => {
                 key={mood.label}
                 className={styles.emojiButton}
                 onClick={() => handleEmojiSelect(mood.emoji, mood.label)}
+                aria-label={`Select ${mood.label} mood`}
               >
                 <span role="img" aria-label={mood.label}>
                   {mood.emoji}

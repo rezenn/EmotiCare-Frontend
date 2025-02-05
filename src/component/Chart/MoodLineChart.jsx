@@ -10,13 +10,12 @@ import {
 import "./lineChart.css";
 
 function MoodLineChart({ moods }) {
-  // Define the order of moods from negative to positive
   const moodOrder = [
     "Enraged",
     "Angry",
     "Disappointed",
-    "Nervous",
     "Overwhelmed",
+    "Nervous",
     "Annoyed",
     "Gloomy",
     "Tired",
@@ -29,10 +28,10 @@ function MoodLineChart({ moods }) {
     "Happy",
   ];
 
-  // Convert mood labels to numerical scale for proper Y-axis placement
+  // Convert mood labels to numerical scale
   const moodData = moods.map((mood) => ({
-    date: mood.date,
-    mood: moodOrder.indexOf(mood.mood), // Assign index for Y-axis
+    date: mood.date, // No timezone shift
+    mood: moodOrder.indexOf(mood.mood), // Convert mood to index
   }));
 
   return (
@@ -52,8 +51,8 @@ function MoodLineChart({ moods }) {
         >
           <XAxis dataKey="date" />
           <YAxis
-            tickFormatter={(index) => moodOrder[index] || ""} // Convert index back to label
-            domain={[0, moodOrder.length - 1]} // Keep within range
+            tickFormatter={(index) => moodOrder[index] || ""}
+            domain={[0, moodOrder.length - 1]}
             tick={{ fontSize: 10 }}
           />
           <Tooltip formatter={(value) => moodOrder[value]} />

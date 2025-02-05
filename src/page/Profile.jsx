@@ -28,9 +28,9 @@ function Profile() {
         "😤": "Enraged",
         "😒": "Annoyed",
         "😕": "Confused",
-        "☹️": "Disappointed",
+        "😞": "Disappointed",
         "😡": "Angry",
-        "😔": "Glommy",
+        "😔": "Gloomy",
       };
 
       const response = await fetch("http://localhost:5000/moodTracker", {
@@ -46,10 +46,19 @@ function Profile() {
       setName(parseRes.user_name);
 
       if (Array.isArray(parseRes.moods)) {
-        const moodsFormatted = parseRes.moods.map((mood) => ({
-          date: new Date(mood.mood_date).toISOString().split("T")[0],
-          mood: emojiToMood[mood.mood_emoji] || "Unknown", // Convert emoji to mood name
-        }));
+        const moodsFormatted = parseRes.moods.map((mood) => {
+          const date = new Date(mood.mood_date);
+          const localDate = new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+          ).toLocaleDateString("en-CA");
+
+          return {
+            date: localDate,
+            mood: emojiToMood[mood.mood_emoji] || "Unknown", // Convert emoji to mood name
+          };
+        });
         setMoodData(moodsFormatted);
       }
     } catch (error) {
@@ -67,9 +76,10 @@ function Profile() {
       <div className={styles.profileConatiner}>
         <div className={styles.displayProfile}>
           <ViewProfile className={styles.View} />
-          <div className={styles.verticalLine}></div>
         </div>
         <div className={styles.chartContainer}>
+          <span className={styles.moodChartTitle}>Mood Chart</span>
+          <hr className={styles.hr} />
           <MoodLineChart moods={moodData} />
         </div>
       </div>

@@ -10,7 +10,7 @@ import MoodLineChart from "../component/Chart/MoodLineChart";
 
 function Dashboard({ setAuth }) {
   const [name, setName] = useState("");
-  const [moodData, setMoodData] = useState([]); // Stores mood data
+  const [moodData, setMoodData] = useState([]);
 
   async function getNameAndMoods() {
     try {
@@ -28,11 +28,11 @@ function Dashboard({ setAuth }) {
         "😐": "Indifferent",
         "😕": "Confused",
         "😴": "Tired",
-        "😔": "Glommy",
+        "😔": "Gloomy",
         "😒": "Annoyed",
         "🫨": "Overwhelmed",
         "😰": "Nervous",
-        "☹️": "Disappointed",
+        "😞": "Disappointed", // Make sure this matches exactly!
         "😡": "Angry",
         "😤": "Enraged",
       };
@@ -50,17 +50,30 @@ function Dashboard({ setAuth }) {
       setName(parseRes.user_name);
 
       if (Array.isArray(parseRes.moods)) {
-        const moodsFormatted = parseRes.moods.map((mood) => ({
-          date: new Date(mood.mood_date).toISOString().split("T")[0],
-          mood: emojiToMood[mood.mood_emoji] || "Unknown", // Convert emoji to mood name
-        }));
+        const moodsFormatted = parseRes.moods.map((mood) => {
+          // Convert stored UTC date to local date without shifting
+          const date = new Date(mood.mood_date);
+          const localDate = new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+          ).toLocaleDateString("en-CA");
+
+          return {
+            date: localDate,
+            mood: emojiToMood[mood.mood_emoji] || "Unknown",
+          };
+        });
+
+        // Ensure last 7 days including today
         const today = new Date();
         const sevenDaysAgo = new Date();
-        sevenDaysAgo.setDate(today.getDate() - 6); // 6 days ago + today
+        sevenDaysAgo.setDate(today.getDate() - 6);
 
         const filteredMoods = moodsFormatted
           .filter((mood) => new Date(mood.date) >= sevenDaysAgo)
           .sort((a, b) => new Date(a.date) - new Date(b.date));
+
         setMoodData(filteredMoods);
       }
     } catch (error) {
@@ -82,6 +95,8 @@ function Dashboard({ setAuth }) {
       <div className={styles.container}>
         <div className={styles.containerLeft}>
           <div className={styles.chartConatiner}>
+            <span className={styles.moodChartTitle}>Mood chart</span>
+            <hr className={styles.hr2} />
             <MoodLineChart moods={moodData} />
           </div>
           <DashboardChallenge className={styles.dashboardChallenge} />
