@@ -60,6 +60,13 @@ label {
 
 }
 
+
+.passwordContainer {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
 input {
     border: none;
     width: 388px;
@@ -71,6 +78,33 @@ input {
     font-size: 17px;
     color: #4e4d4d;
 }
+
+.togglePassword {
+    height: fit-content;
+    width: fit-content;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 22rem;
+    height: 0px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+}
+
+.togglePassword:hover {
+    background-color: transparent;
+}
+
+.eyeIcon {
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+}
+
 
 .signinButton {
     background-color: #338EF1;

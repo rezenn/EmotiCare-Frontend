@@ -1,10 +1,13 @@
 import { useState } from "react";
 import axios from "../axios/axios";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa6";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 
 function LoginForm({ setAuth }) {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
 
   const [inputs, setInputs] = useState({
     email: "",
@@ -63,14 +66,27 @@ function LoginForm({ setAuth }) {
           <br />
           <label id="Password">Password</label>
           <br />
-          <input
-            type="password"
-            placeholder="Enter password"
-            name="password"
-            value={password}
-            onChange={onChange}
-            required
-          />
+          <div className="passwordContainer">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter password"
+              name="password"
+              value={password}
+              onChange={onChange}
+              required
+            />
+            <button
+              type="button"
+              className="togglePassword"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <FaEyeSlash className="eyeIcon" />
+              ) : (
+                <FaEye className="eyeIcon" />
+              )}
+            </button>
+          </div>
           <br />
           <Link className="forgotPassword" to="/forgotPassword">
             Forgot password?
