@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import styles from "./journalForm.module.css";
 import TextEditor from "../TextEditor";
 import axios from "../../axios/axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function JournalForm({ addItem, journals }) {
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -51,6 +54,7 @@ function JournalForm({ addItem, journals }) {
 
       addItem(response.data); // Update UI with the new journal entry
       alert("Journal added successfully!");
+      navigate("/journal");
 
       // Clear input fields
       setTitle("");

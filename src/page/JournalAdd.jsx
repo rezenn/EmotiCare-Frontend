@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "../axios/axios";
 import Navbar from "../component/Navbar/Navbar";
 import JournalForm from "../component/Journal/JournalForm";
-import JournalView from "../component/Journal/JournalView";
-import styles from "./journalPage.module.css";
 
-function JournalPage() {
+function JournalAdd() {
   const [journals, setJournals] = useState([]);
 
   useEffect(() => {
@@ -33,15 +31,10 @@ function JournalPage() {
 
   return (
     <>
-      <Navbar activePage="journal" />
-      <div className={styles.journalContainer}>
-        {/* <JournalForm addItem={addItem} journals={journals} /> */}
-        <div className={styles.verticalLine}></div>
-        <JournalView journals={journals} setJournals={setJournals} />{" "}
-        {/* Pass setJournals here */}
-      </div>
+      <Navbar />
+      <JournalForm addItem={addItem} journals={journals} />
     </>
   );
 }
 
-export default JournalPage;
+export default JournalAdd;

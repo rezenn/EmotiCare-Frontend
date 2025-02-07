@@ -1,9 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Reem+Kufi:wght@400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 70px 0 10px 100px;
+    padding: 10px 5px;
+    width: 1300px;
+    height: 680px;
+    background-color: hsla(0, 0%, 100%, 0.34);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+
+}
+
 .viewConatiner {
     margin: 100px;
 }
 
+/* 
 .journal {
     position: absolute;
     top: 76px;
@@ -16,7 +36,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-}
+} */
 
 /* journal Header */
 .journal_header {
@@ -34,12 +54,13 @@
 }
 
 /* Buttons */
-.back_button {
+.back_button,
+.createBtn {
     width: 100px;
     height: 45px;
     padding: 8px;
     margin: 10px;
-    margin-left: 520px;
+    margin-left: 1020px;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
@@ -51,33 +72,38 @@
     letter-spacing: 1px;
     transition: all 0.2s linear;
     border: none;
+    font: 1em "Reem Kufi";
 
 }
 
-.back_button:hover {
+.back_button:hover,
+.createBtn:hover {
     background-color: #2d91fd;
     transform: scale(1.1);
 }
 
-.back_button:active {
+.back_button:active,
+.createBtn:active {
     transform: scale(0.9);
 }
 
-.back_button {
+.back_button,
+.createBtn {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.backText {
+/* .backText {
     color: #fff;
     font-family: 'Reem Kufi', sans-serif;
     font-size: 0.9rem;
 
-}
+} */
 
 .journal_content {
     flex-grow: 1;
     padding: 20px;
     overflow-y: auto;
+
 }
 
 /* journal List */
@@ -92,45 +118,48 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: #90bdee;
+    color: #000;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .journal_preview:hover {
-    background-color: #e0e0e0;
+    background-color: #aeceef;
     transform: scale(1.01);
 }
 
 /* journal Details */
 .journal_details {
     padding: 10px;
+
 }
 
 .journal_details h3 {
     margin-top: 0;
     font-family: 'Afacad', sans-serif;
     font-size: 24px;
-    color: #333;
+    color: #000;
 }
 
 .journal_details h2 {
     margin-top: 0;
     font-family: 'Afacad', sans-serif;
     font-size: 24px;
-    color: #333;
+    color: #000;
 }
 
 .journal_details div {
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
-    color: #333;
+    color: #000;
     line-height: 1.6;
     white-space: pre-wrap;
 }
 
 .journal_details {
-    background-color: #fff;
+    background-color: #aeceef;
+    color: #000;
     margin: 10px;
     border: 1px solid #ccc;
     border-radius: 15px;

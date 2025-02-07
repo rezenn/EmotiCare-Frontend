@@ -16,6 +16,7 @@ import DailyChallenge from "./page/DailyChallenge";
 import Profile from "./page/Profile";
 import EditProfile from "./page/EditProfile";
 import Journal from "./page/JournalPage";
+import JournalAdd from "./page/JournalAdd";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return !!localStorage.getItem("token"); // Check if token exists on initialization
@@ -103,6 +104,16 @@ function App() {
           element={
             isAuthenticated ? (
               <Settings setAuth={setAuth} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/addJournal"
+          element={
+            isAuthenticated ? (
+              <JournalAdd setAuth={setAuth} />
             ) : (
               <Navigate to="/login" />
             )

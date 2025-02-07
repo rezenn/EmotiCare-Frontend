@@ -7,43 +7,46 @@
 }
 
 .container {
-    margin: 76px 0 20px 20px;
+    margin: 70px 0 10px 100px;
     padding: 10px 5px;
-    width: fit-content;
-    height: fit-content;
+    width: 1300px;
+    height: 680px;
     background-color: hsla(0, 0%, 100%, 0.34);
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* overflow-y: scroll; */
 
 }
+
 
 .journalTitle {
     font-family: 'Afacad', sans-serif;
     font-size: 2rem;
     color: black;
-    width: auto;
+    width: 90%;
 }
 
 .journalForm {
-    padding: 5px 15px 10px 15px;
+    padding: 5px 15px 10px 75px;
 }
 
 .journalInput {
-    width: 550px;
+    margin-top: 15px;
+    width: 90%;
 }
 
 .journalDate {
-    width: 270px;
+    width: 44.5%;
     margin-right: 10px;
 }
 
 .journalTime {
-    width: 270px;
+    width: 44.5%;
 }
 
 .journalArea {
-    width: 550px;
+    width: 90%;
     min-height: 450px;
     max-height: 450px;
     padding: 10px;
@@ -52,9 +55,9 @@
 }
 
 .journalSubmit {
-    width: 515px;
+    width: 85%;
     height: fit-content;
-    margin: 5px 0 10px 20px;
+    margin: 5px 0 10px 30px;
     padding: 5px;
     background-color: #007bff;
     color: white;
