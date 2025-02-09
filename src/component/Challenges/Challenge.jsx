@@ -123,12 +123,19 @@ function Challenge() {
       console.error("Error response data:", err.response?.data);
     }
   };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      addChallenge();
+    }
+  };
   return (
     <div className={styles.challengeContainer}>
       <h2 className={styles.challengeTitle}>Add your Challenges</h2>
       <hr />
       <input
         onChange={(e) => setChallengeInput(e.target.value)}
+        onKeyPress={handleKeyPress}
         className={styles.enterChallenge}
         type="text"
         value={challengeInput}

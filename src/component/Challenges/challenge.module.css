@@ -42,6 +42,19 @@
 .displayChallenge {
     height: 400px;
     overflow-y: scroll;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+
+.displayChallenge::-webkit-scrollbar {
+    width: 8px;
+
+}
+
+.displayChallenge::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #ccc;
 }
 
 ul {

@@ -28,9 +28,19 @@
     font-weight: bold;
 }
 
-.dashboardChallengeDisplay {
-    height: 400px;
+.displayChallenges {
+    max-height: 400px;
     overflow-y: scroll;
+}
+
+.displayChallenges::-webkit-scrollbar {
+    width: 8px;
+
+}
+
+.displayChallenges::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #ccc;
 }
 
 .challengeNames {
