@@ -10,7 +10,7 @@
 .challengeContainer {
     padding-top: 10px;
     margin: 70px 0 50px 110px;
-    width: 690px;
+    width: 725px;
     min-height: 455px;
     background-color: hsla(0, 0%, 100%, 0.34);
     box-shadow: 5px 7px 6px rgba(0, 0, 0, 0.1);
@@ -37,6 +37,11 @@
     border: 5px;
     width: 500px;
     margin: 0px 0 0 10px;
+}
+
+.displayChallenge {
+    height: 400px;
+    overflow-y: scroll;
 }
 
 ul {

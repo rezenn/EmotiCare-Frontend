@@ -138,27 +138,29 @@ function Challenge() {
         Add Challenge
       </button>
 
-      <ul>
-        {challenges.map((challenge, index) => {
-          return (
-            <li className={styles.listItems} key={challenge.challenge_id}>
-              <input
-                type="checkbox"
-                className={styles.inputCheckbox}
-                checked={challenge.completed || false}
-                onChange={() => toggleChallenge(index)}
-              />
-              <span className={styles.challengeName}>{challenge.title}</span>
-              <button
-                className={styles.removeButton}
-                onClick={() => removeChallenge(index)}
-              >
-                Remove
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <div className={styles.displayChallenge}>
+        <ul>
+          {challenges.map((challenge, index) => {
+            return (
+              <li className={styles.listItems} key={challenge.challenge_id}>
+                <input
+                  type="checkbox"
+                  className={styles.inputCheckbox}
+                  checked={challenge.completed || false}
+                  onChange={() => toggleChallenge(index)}
+                />
+                <span className={styles.challengeName}>{challenge.title}</span>
+                <button
+                  className={styles.removeButton}
+                  onClick={() => removeChallenge(index)}
+                >
+                  Remove
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }

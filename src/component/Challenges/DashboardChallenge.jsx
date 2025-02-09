@@ -4,18 +4,15 @@ import axios from "../../axios/axios";
 
 function DashboardChallenge() {
   const [challenges, setChallenges] = useState([]);
-  const [challengeInput, setChallengeInput] = useState("");
 
   useEffect(() => {
     fetchChallenges();
-    const intervalid = setInterval(fetchChallenges, 500);
-    return () => clearInterval(intervalid);
-  }, []);
+  }, []); // Remove the setInterval
 
   const fetchChallenges = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("/challenge/all", {
+      const response = await axios.get("/challenge/daily", {
         headers: { token },
       });
 
@@ -29,13 +26,18 @@ function DashboardChallenge() {
       console.error("Error fetching challenges:", err);
     }
   };
+
   const toggleChallenge = async (index) => {
     try {
       const token = localStorage.getItem("token");
+      const selectedChallenge = challenges[index];
+
+      // Ensure the challenge_id is correct
+      console.log(`Toggling challenge: ${selectedChallenge.challenge_id}`);
 
       const response = await axios.patch(
         "/challenge/mark-done",
-        { challengeID: challenge.challenge_id },
+        { challengeID: selectedChallenge.challenge_id }, // Pass the correct challengeID
         {
           headers: { token },
         }
@@ -51,29 +53,24 @@ function DashboardChallenge() {
   };
 
   return (
-    <>
-      <div className={styles.challengeContainer}>
-        <h2 className={styles.challengeTitle}>Today's Challenges</h2>
-        <hr />
-
-        <ul>
-          {challenges.map((challenge, index) => {
-            return (
-              <li className={styles.listItems} key={challenge.challenge_id}>
-                <input
-                  type="checkbox"
-                  className={styles.inputCheckbox}
-                  checked={challenge.completed || false}
-                  onChange={() => toggleChallenge(index)}
-                />
-                <span className={styles.challengeName}>{challenge.title}</span>
-                <br />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </>
+    <div className={styles.challengeContainer}>
+      <h2 className={styles.challengeTitle}>Today's Challenges</h2>
+      <hr />
+      <ul>
+        {challenges.map((challenge, index) => (
+          <li className={styles.listItems} key={challenge.challenge_id}>
+            <input
+              type="checkbox"
+              className={styles.inputCheckbox}
+              checked={challenge.completed || false}
+              onChange={() => toggleChallenge(index)} // Trigger toggle on change
+            />
+            <span className={styles.challengeName}>{challenge.title}</span>
+            <br />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
