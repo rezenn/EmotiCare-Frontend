@@ -1,40 +1,27 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-
+import "./piechart.css";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const MoodPieChart = ({ moods }) => {
-  // Count moods
-  const moodCounts = {
-    Happy: 0,
-    Excited: 0,
-    Blank: 0,
-    Relaxed: 0,
-    Surprised: 0,
-    Tired: 0,
-    Indifferent: 0,
-    Overwhelmed: 0,
-    Nervous: 0,
-    Enraged: 0,
-    Annoyed: 0,
-    Confused: 0,
-    Disappointed: 0,
-    Angry: 0,
-    Gloomy: 0,
-  };
+  if (!moods || moods.length === 0) {
+    return <p>No mood data available.</p>;
+  }
 
-  Object.values(moods).forEach((mood) => {
-    moodCounts[mood]++;
-  });
+  // Count occurrences of each mood
+  const moodCounts = moods.reduce((acc, { mood }) => {
+    acc[mood] = (acc[mood] || 0) + 1;
+    return acc;
+  }, {});
 
   const data = {
-    labels: moods ? Object.keys(moodCounts) : [],
+    labels: Object.keys(moodCounts),
     datasets: [
       {
         data: Object.values(moodCounts),
         backgroundColor: [
-          "#FF6384",
+          "#F57C00",
           "#36A2EB",
           "#FFCE56",
           "#4BC0C0",
@@ -43,32 +30,23 @@ const MoodPieChart = ({ moods }) => {
           "#FDB45C",
           "#B3E3B2",
           "#FF7C80",
-          "#A9D0F5",
+          "#CAB8E4",
           "#B9D2F0",
           "#F0B9D9",
-          "#F9D2B4",
-          "#FBD49D",
-          "#F9A9C5",
+          "#B5EAD7",
+          "#A7E8F2",
+          "#FFD699",
         ],
-        hoverBackgroundColor: "#D6D6D6",
+        hoverBackgroundColor: "#ccc",
       },
     ],
   };
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Mood Distribution - Pie Chart",
-      },
-    },
-  };
-
-  return <Pie data={data} options={options} />;
+  return (
+    <div className="pieChartContainer">
+      <Pie className="pieChart" data={data} />
+    </div>
+  );
 };
 
 export default MoodPieChart;

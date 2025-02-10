@@ -94,7 +94,7 @@ body {
     right: 0;
     background: #ccd5ae;
     padding: 10px;
-    border: 1px solid #333;
+    border: 1px solid #ccc;
     border-radius: 5px;
     z-index: 1000;
     width: 100%;
@@ -108,7 +108,6 @@ body {
     align-items: center;
 }
 
-
 @media (max-width:1235px) {
     .nav {
         gap: 10px;
@@ -119,6 +118,9 @@ body {
         padding-left: 200px;
     }
 
+    .user {
+        margin-left: 35px;
+    }
 }
 
 @media (max-width: 1000px) {
@@ -131,6 +133,9 @@ body {
         padding-left: 100px;
     }
 
+    .user {
+        margin-left: 40px;
+    }
 
 }
 
@@ -159,7 +164,7 @@ body {
     }
 
     .user {
-        margin-left: 205px;
+        margin-left: 35px;
     }
 
     .form-container {
@@ -182,6 +187,6 @@ body {
     }
 
     .user {
-        margin-left: 100px;
+        margin-left: 20px;
     }
 }

@@ -1,0 +1,54 @@
+* {
+    padding: 0;
+}
+
+.chartsDisplay {
+    background-color: #f5efef00;
+    width: fit-content;
+    height: 675px;
+    overflow-y: scroll;
+    margin-top: 120px;
+    border-radius: 20px;
+}
+
+.chartsDisplay::-webkit-scrollbar {
+    width: 8px;
+
+}
+
+.chartsDisplay::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #ccc;
+}
+
+
+.chartContainer {
+    margin: 0px 10px 10px 10px;
+    width: 800px;
+    height: 480px;
+    background-color: hsla(0, 0%, 100%, 0.34);
+    box-shadow: 5px 7px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.PiechartContainer {
+    margin: 0px 10px 10px 10px;
+    width: 800px;
+    height: 555px;
+    background-color: hsla(0, 0%, 100%, 0.34);
+    box-shadow: 5px 7px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.moodChartTitle {
+    margin: 1rem;
+    color: #000;
+    font-family: "Raleway", serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.hr {
+    margin: 7px 10px 10px 10px;
+
+}
