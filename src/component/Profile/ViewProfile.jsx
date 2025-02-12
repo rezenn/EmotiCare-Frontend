@@ -12,6 +12,11 @@ function ViewProfile() {
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
   const [createdAt, setCreatedAt] = useState("");
+  const [countMood, setCountMood] = useState("");
+  const [streaks, setStreaks] = useState("");
+  const [countJournal, setCountJournal] = useState("");
+  const [countChallenges, setCountChallenges] = useState("");
+  const [completedChallenges, setCompletedChallenges] = useState(0);
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
@@ -51,6 +56,85 @@ function ViewProfile() {
     };
 
     fetchUserData();
+  }, []);
+
+  useEffect(() => {
+    const fetchUserMood = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const { data } = await axios.get("/moodTracker/countMoods", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setCountMood(data.count_mood);
+      } catch (error) {
+        console.error("Failed to count moods:", error.message);
+        setIsLoading(false);
+      }
+    };
+    fetchUserMood();
+  }, []);
+
+  useEffect(() => {
+    const fetchStreaks = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const { data } = await axios.get("/moodTracker/streaks", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setStreaks(data.streaks);
+      } catch (error) {
+        console.error("Failed to count moods:", error.message);
+        setIsLoading(false);
+      }
+    };
+    fetchStreaks();
+  }, []);
+
+  useEffect(() => {
+    const fetchUserJournals = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const { data } = await axios.get("/dailyJournal/countJournal", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setCountJournal(data.count_journal);
+      } catch (error) {
+        console.error("Failed to count journals:", error.message);
+        setIsLoading(false);
+      }
+    };
+    fetchUserJournals();
+  }, []);
+
+  useEffect(() => {
+    const fetchUserChallenges = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const { data } = await axios.get("/challenge/countChallenge", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setCountChallenges(data.count_challenges);
+      } catch (error) {
+        console.error("Failed to count challenges:", error.message);
+        setIsLoading(false);
+      }
+    };
+    fetchUserChallenges();
+  }, []);
+
+  useEffect(() => {
+    const fetchCompletedChallenges = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const { data } = await axios.get("/challenge/countCompleteChallenge", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setCompletedChallenges(data.count_complete_challenges); // FIXED HERE
+      } catch (error) {
+        console.error("Failed to count complete challenges:", error.message);
+      }
+    };
+    fetchCompletedChallenges();
   }, []);
 
   if (isFetching) {
@@ -96,11 +180,11 @@ function ViewProfile() {
         <h2>Activity</h2>
         <hr />
         <ul className={styles.statsList}>
-          <StatItem label="Mood entry" value="234" />
-          <StatItem label="Mood streaks" value="54🔥" />
-          <StatItem label="Journal entry" value="198" />
-          <StatItem label="Challenges completed" value="314" />
-          <StatItem label="Challenges added" value="124" />
+          <StatItem label="Mood entry" value={countMood} />
+          <StatItem label="Streaks" value={streaks} />
+          <StatItem label="Journal entry" value={countJournal} />
+          <StatItem label="Total challenges " value={countChallenges} />
+          <StatItem label="Challenges completed" value={completedChallenges} />
         </ul>
       </section>
     </div>
@@ -119,10 +203,22 @@ function ProfileField({ label, value }) {
 
 // Reusable Component for Stats
 function StatItem({ label, value }) {
+  const getStreakEmoji = (streaks) => {
+    if (streaks >= 30) return "🔥"; // Fire emoji for long streaks
+    if (streaks >= 7) return "🏆"; // Trophy for a week-long streak
+    if (streaks >= 3) return "✨"; // Sparkle for a short streak
+    return " "; // Flex for small effort
+  };
   return (
     <li className={styles.statItem}>
       <span className={styles.statLabel}>{label}: </span>
-      <span className={styles.statValue}>{value}</span>
+      <span className={styles.statValue}>
+        {label === "Streaks"
+          ? `${value} ${getStreakEmoji(value)}`
+          : label === "Challenges completed"
+          ? `${value} ✅`
+          : value}
+      </span>
     </li>
   );
 }

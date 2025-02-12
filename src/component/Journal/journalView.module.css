@@ -67,7 +67,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #007bff;
+    background-color: #5465ff;
     border-radius: 15px;
     letter-spacing: 1px;
     transition: all 0.2s linear;
@@ -78,7 +78,7 @@
 
 .back_button:hover,
 .createBtn:hover {
-    background-color: #2d91fd;
+    background-color: #788bff;
     transform: scale(1.1);
 }
 
@@ -118,14 +118,14 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #90bdee;
+    background-color: #ccdbfd;
     color: #000;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .journal_preview:hover {
-    background-color: #aeceef;
+    background-color: #d7e3fc;
     transform: scale(1.01);
 }
 
@@ -158,7 +158,7 @@
 }
 
 .journal_details {
-    background-color: #aeceef;
+    background-color: #ccdbfd;
     color: #000;
     margin: 10px;
     border: 1px solid #ccc;

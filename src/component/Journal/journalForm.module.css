@@ -59,7 +59,7 @@
     height: fit-content;
     margin: 5px 0 10px 30px;
     padding: 5px;
-    background-color: #007bff;
+    background-color: #5465ff;
     color: white;
     border-radius: 15px;
     font-size: 1.5rem;
@@ -68,8 +68,7 @@
 }
 
 .journalSubmit:hover {
-    background-color: #2d91fd;
-    transform: scale(1.1);
+    background-color: #788bff;
 }
 
 .journalSubmit:active {

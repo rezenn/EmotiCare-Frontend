@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import styles from "./EditProfileComp.module.css";
-import axios from "../../axios/axios"; // Ensure axios instance is correctly configured
+import axios from "../../axios/axios";
 import defaultUserImage from "../../assets/ProfileImg.jpg";
 import { useNavigate } from "react-router-dom";
 
@@ -40,8 +40,8 @@ function EditProfileComp() {
         setUsername(userData.user_name || "");
         setGender(userData.gender || "");
         setEmail(userData.user_email || "");
-        setBirthday(userData.birthday?.split("T")[0] || ""); // Format date
-        setProfileImg(userData.profile_picture_url || "");
+        setBirthday(userData.birthday?.split("T")[0] || "");
+        setProfileImg(userData.profile_picture_url || profileImg); // Ensure existing image is retained
       })
       .catch((error) => {
         console.error(error);
@@ -75,13 +75,17 @@ function EditProfileComp() {
       formData.append("full_name", fullName);
       formData.append("birthday", birthday);
       formData.append("gender", gender);
+
       if (profileImgFile) {
         formData.append("userImage", profileImgFile);
+      } else {
+        formData.append("profile_picture_url", profileImg); // Preserve existing image
       }
+
       formData.append("email", email);
 
       const token = localStorage.getItem("token");
-      const response = await axios.put(`/profile/${email}`, formData, {
+      await axios.put(`/profile/${email}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -112,11 +116,14 @@ function EditProfileComp() {
               profileImgFile
                 ? URL.createObjectURL(profileImgFile)
                 : profileImg
-                ? `http://localhost:5000${profileImg}`
+                ? profileImg.startsWith("http")
+                  ? profileImg
+                  : `http://localhost:5000${profileImg}`
                 : defaultUserImage
             }
             alt="User"
           />
+
           <button
             className={styles.changeImgBtn}
             type="button"

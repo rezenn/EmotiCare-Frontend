@@ -72,7 +72,9 @@ const MoodCalendar = ({ onMoodDataChange }) => {
   const fetchMoods = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("/moodTracker", { headers: { token } });
+      const response = await axios.get("/moodTracker", {
+        headers: { token },
+      });
 
       if (Array.isArray(response.data.moods)) {
         const moods = {};

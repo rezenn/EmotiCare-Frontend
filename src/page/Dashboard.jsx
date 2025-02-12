@@ -68,7 +68,7 @@ function Dashboard({ setAuth }) {
         // Ensure last 7 days including today
         const today = new Date();
         const sevenDaysAgo = new Date();
-        sevenDaysAgo.setDate(today.getDate() - 6);
+        sevenDaysAgo.setDate(today.getDate() - 7);
 
         const filteredMoods = moodsFormatted
           .filter((mood) => new Date(mood.date) >= sevenDaysAgo)
