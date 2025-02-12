@@ -201,13 +201,18 @@ function ProfileField({ label, value }) {
   );
 }
 
-// Reusable Component for Stats
 function StatItem({ label, value }) {
   const getStreakEmoji = (streaks) => {
-    if (streaks >= 30) return "🔥"; // Fire emoji for long streaks
-    if (streaks >= 7) return "🏆"; // Trophy for a week-long streak
-    if (streaks >= 3) return "✨"; // Sparkle for a short streak
-    return " "; // Flex for small effort
+    if (streaks >= 101) return "💎";
+    if (streaks >= 100) return "💯";
+    if (streaks >= 51) return "💎";
+    if (streaks >= 50) return "🎉";
+    if (streaks >= 31) return "💎";
+    if (streaks >= 30) return "🏅";
+    if (streaks >= 8) return "💎";
+    if (streaks >= 7) return "🏆";
+    if (streaks >= 3) return "🌟";
+    return " ";
   };
   return (
     <li className={styles.statItem}>

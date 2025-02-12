@@ -41,7 +41,7 @@ function EditProfileComp() {
         setGender(userData.gender || "");
         setEmail(userData.user_email || "");
         setBirthday(userData.birthday?.split("T")[0] || "");
-        setProfileImg(userData.profile_picture_url || profileImg); // Ensure existing image is retained
+        setProfileImg(userData.profile_picture_url || ""); // Ensure existing image is retained
       })
       .catch((error) => {
         console.error(error);
@@ -61,7 +61,7 @@ function EditProfileComp() {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setProfileImgFile(file);
-      setProfileImg(imageUrl);
+      setProfileImg(imageUrl); // Set the selected image to profileImg
     }
   };
 
@@ -79,7 +79,7 @@ function EditProfileComp() {
       if (profileImgFile) {
         formData.append("userImage", profileImgFile);
       } else {
-        formData.append("profile_picture_url", profileImg); // Preserve existing image
+        formData.append("profile_picture_url", profileImg); // Preserve existing image if no new image is selected
       }
 
       formData.append("email", email);
@@ -114,16 +114,15 @@ function EditProfileComp() {
             className={styles.profileImg}
             src={
               profileImgFile
-                ? URL.createObjectURL(profileImgFile)
+                ? URL.createObjectURL(profileImgFile) // Display the new image if selected
                 : profileImg
                 ? profileImg.startsWith("http")
                   ? profileImg
-                  : `http://localhost:5000${profileImg}`
-                : defaultUserImage
+                  : `http://localhost:5000${profileImg}` // If profileImg is available, use it
+                : defaultUserImage // Use default image if no profileImg is found
             }
             alt="User"
           />
-
           <button
             className={styles.changeImgBtn}
             type="button"
