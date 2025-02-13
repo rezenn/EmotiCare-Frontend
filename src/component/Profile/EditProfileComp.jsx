@@ -166,8 +166,8 @@ function EditProfileComp() {
               className={styles.profileInputRadio}
               type="radio"
               name="gender"
-              value="male"
-              checked={gender === "male"}
+              value="Male"
+              checked={gender === "Male"}
               onChange={(e) => setGender(e.target.value)}
             />
             <label className={styles.profileLabelRadio}>Male</label>
@@ -177,8 +177,8 @@ function EditProfileComp() {
               className={styles.profileInputRadio}
               type="radio"
               name="gender"
-              value="female"
-              checked={gender === "female"}
+              value="Female"
+              checked={gender === "Female"}
               onChange={(e) => setGender(e.target.value)}
             />
             <label className={styles.profileLabelRadio}>Female</label>
@@ -188,8 +188,8 @@ function EditProfileComp() {
               className={styles.profileInputRadio}
               type="radio"
               name="gender"
-              value="other"
-              checked={gender === "other"}
+              value="Other"
+              checked={gender === "Other"}
               onChange={(e) => setGender(e.target.value)}
             />
             <label className={styles.profileLabelRadio}>Other</label>

@@ -4,6 +4,7 @@ import Navbar from "../component/Navbar/Navbar";
 import style from "./settings.module.css";
 import logoutIcon from "../assets/logout.svg";
 import { toast } from "react-toastify";
+import Footer2 from "../component/Footer/Footer2";
 function Settings({ setAuth }) {
   const navigate = useNavigate();
 
@@ -45,6 +46,7 @@ function Settings({ setAuth }) {
           Logout
         </button>
       </div>
+      <Footer2 />
     </>
   );
 }

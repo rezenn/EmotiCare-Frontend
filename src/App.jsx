@@ -17,6 +17,8 @@ import Profile from "./page/Profile";
 import EditProfile from "./page/EditProfile";
 import Journal from "./page/JournalPage";
 import JournalAdd from "./page/JournalAdd";
+import Resources from "./page/Resources";
+import Features from "./page/Features";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return !!localStorage.getItem("token"); // Check if token exists on initialization
@@ -79,6 +81,8 @@ function App() {
           path="/journal"
           element={isAuthenticated ? <Journal /> : <Navigate to="/login" />}
         />
+        <Route path="/resources" element={<Resources />} />
+        <Route path="/features" element={<Features />} />
         <Route
           path="/profile"
           element={

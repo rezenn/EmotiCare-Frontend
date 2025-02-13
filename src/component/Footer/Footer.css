@@ -37,6 +37,7 @@
 .footerCol ul li {
     list-style-type: none;
     margin-bottom: 10px;
+    margin-left: 15px;
 }
 
 .footerCol ul li a {

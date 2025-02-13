@@ -2,6 +2,7 @@ import Navbar from "../component/Navbar/Navbar";
 import styles from "./Profile.module.css";
 import ViewProfile from "../component/Profile/ViewProfile";
 import DisplayChart from "../component/DisplayChart/DisplayChart";
+import Footer2 from "../component/Footer/Footer2";
 
 function Profile() {
   return (
@@ -15,6 +16,7 @@ function Profile() {
           <DisplayChart />
         </div>
       </div>
+      <Footer2 />
     </>
   );
 }

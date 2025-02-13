@@ -71,9 +71,9 @@ function Navbar() {
           <li>
             <Link to="/journal">Journal</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/resources">Resources</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/settings">Settings</Link>
           </li>

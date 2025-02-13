@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "../axios/axios";
 import Navbar from "../component/Navbar/Navbar";
 import JournalForm from "../component/Journal/JournalForm";
+import Footer2 from "../component/Footer/Footer2";
 
 function JournalAdd() {
   const [journals, setJournals] = useState([]);
@@ -33,6 +34,7 @@ function JournalAdd() {
     <>
       <Navbar />
       <JournalForm addItem={addItem} journals={journals} />
+      <Footer2 />
     </>
   );
 }

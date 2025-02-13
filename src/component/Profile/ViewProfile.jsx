@@ -211,7 +211,7 @@ function StatItem({ label, value }) {
     if (streaks >= 30) return "🏅";
     if (streaks >= 8) return "💎";
     if (streaks >= 7) return "🏆";
-    if (streaks >= 3) return "🌟";
+    if (streaks >= 1) return "🌟";
     return " ";
   };
   return (

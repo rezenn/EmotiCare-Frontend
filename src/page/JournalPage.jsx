@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "../axios/axios";
 import Navbar from "../component/Navbar/Navbar";
-import JournalForm from "../component/Journal/JournalForm";
 import JournalView from "../component/Journal/JournalView";
 import styles from "./journalPage.module.css";
+import Footer2 from "../component/Footer/Footer2";
 
 function JournalPage() {
   const [journals, setJournals] = useState([]);
@@ -40,6 +40,7 @@ function JournalPage() {
         <JournalView journals={journals} setJournals={setJournals} />{" "}
         {/* Pass setJournals here */}
       </div>
+      <Footer2 />
     </>
   );
 }
