@@ -19,6 +19,7 @@
     background-color: #EBDFD7;
     box-shadow: 5px 7px 6px rgba(0, 0, 0, 0.1);
     flex-wrap: wrap;
+    border: 1px soild #ccc;
 }
 
 .moodometer {
@@ -76,6 +77,18 @@ span {
     font-family: "Anta", sans-serif;
     font-weight: normal;
     color: #6D8E00;
+}
+
+.titleMood {
+    width: 200px;
+    font-size: 3rem;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    color: #6D8E00;
+    display: flex;
+    justify-self: start;
+    align-self: start;
+    margin: 20px;
 }
 
 .emoji {

@@ -265,6 +265,91 @@ const resources = [
       </>
     ),
   },
+  {
+    title: "What is a mood disorder?",
+    link: "https://my.clevelandclinic.org/health/diseases/17843-mood-disorders",
+    description: (
+      <>
+        <p>
+          A mood disorder is a mental health condition that primarily affects
+          your emotional state. It’s a disorder in which you experience long
+          periods of extreme happiness, extreme sadness or both. Certain mood
+          disorders involve other persistent emotions, such as anger and
+          irritability. <br />
+          It’s normal for your mood to change, depending on the situation.
+          However, for a mood disorder diagnosis, symptoms must be present for
+          several weeks or longer. Mood disorders can cause changes in your
+          behavior and can affect your ability to perform routine activities,
+          such as work or school. <br />
+          Two of the most common mood disorders are depression and bipolar
+          disorder. <br />
+        </p>
+        <p>
+          <strong>What are all the mood disorders?</strong>
+        </p>
+
+        <p>
+          Mood disorders include:
+          <ul>
+            <li>Depression and its subtypes.</li>
+            <li>Bipolar disorder and its subtypes.</li>
+            <li>Premenstrual dysphoric disorder.</li>
+            <li>Disruptive mood dysregulation disorder.</li>
+          </ul>
+        </p>
+        <p>
+          <strong>What are the symptoms of mood disorders?</strong> <br />
+          Each mood disorder has different symptoms and/or different patterns of
+          symptoms. Mood disorders typically have symptoms that affect your
+          mood, sleep, eating behaviors, energy level and thinking abilities
+          (such as racing thoughts or loss of concentration). In general,
+          depressive symptoms include: Feeling sad most of the time or nearly
+          every day. A lack of energy or feeling sluggish. Feeling worthless or
+          hopeless. Loss of interest in activities that formerly brought
+          enjoyment.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "What is paranoia?",
+    link: "https://www.mhanational.org/conditions/paranoia-and-delusional-disorders",
+    description: (
+      <>
+        <p>
+          Paranoia involves intense anxious or fearful feelings and thoughts
+          often related to persecution, threat, or conspiracy. Paranoia can
+          occur with many mental health conditions but is most often present in
+          psychotic disorders. Paranoid thoughts can become delusions when
+          irrational thoughts and beliefs become so fixed that nothing can
+          convince a person that what they think or feel is not true. When a
+          person has paranoia or delusions, but no other symptoms (like hearing
+          or seeing things that aren't there), they might have what is called a
+          delusional disorder. Because only thoughts are impacted, a person with
+          delusional disorder can usually work and function in everyday life,
+          however, their lives may be limited and isolated as a result of their
+          delusions. <br />
+          Delusional disorder is characterized by irrational or intense
+          belief(s) or suspicion(s) that a person believes to be true. These
+          beliefs may seem outlandish and impossible (bizarre) or fit within the
+          realm of what is possible (non-bizarre). Symptoms must last for one
+          month or longer in order for someone to be diagnosed with a delusional
+          disorder.
+        </p>
+        <p>
+          <strong>Signs of Paranoia</strong> <br />
+          Symptoms of paranoia and delusional disorders include intense and
+          irrational mistrust or suspicion, which can bring on feelings of fear,
+          anger, and betrayal. Some beliefs and behaviors of individuals with
+          symptoms of paranoia include mistrust, hypervigilance (constantly
+          looking for threats), difficulty with forgiveness, defensive attitude
+          in response to imagined criticism, preoccupation with hidden motives,
+          fear of being tricked or taken advantage of, trouble relaxing, or
+          being argumentative.
+        </p>
+      </>
+    ),
+  },
 ];
 
 function Resources() {

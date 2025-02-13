@@ -55,14 +55,25 @@ body {
     color: #333;
     font-weight: 500;
     font-size: 16px;
-    transition: color 0.3s
+    transition: color 0.3s;
 }
 
 .nav a:hover {
     color: #6d8e00;
 }
 
+/* Active link styling */
+.nav a.active-link {
+    color: #6d8e00;
+    /* Green color when the link is active */
+    font-weight: bold;
+    background-color: #e4d6c6;
+    /* Light background on active link */
+    border-radius: 5px;
+    padding: 5px 10px;
+}
 
+/* Hamburger Menu */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -76,6 +87,7 @@ body {
     background: #333;
 }
 
+/* Mobile menu styles */
 .nav.active {
     display: flex;
     flex-direction: column;
@@ -98,8 +110,7 @@ body {
     align-items: center;
 }
 
-
-@media (max-width:1235px) {
+@media (max-width: 1235px) {
     .nav {
         gap: 10px;
     }
@@ -108,7 +119,6 @@ body {
         gap: 50px;
         padding-left: 200px;
     }
-
 }
 
 @media (max-width: 1000px) {
@@ -120,9 +130,7 @@ body {
         gap: 20px;
         padding-left: 100px;
     }
-
 }
-
 
 @media (max-width: 768px) {
     .hamburger {

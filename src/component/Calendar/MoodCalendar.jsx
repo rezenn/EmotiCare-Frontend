@@ -154,11 +154,7 @@ const MoodCalendar = ({ onMoodDataChange }) => {
 
   return (
     <div className={styles.CalendarDiv}>
-      <img
-        className={styles.moodometer}
-        src="/src/assets/moodometer.png"
-        alt="moodometer"
-      />
+      <h1 className={styles.titleMood}>Moodometer</h1>
       <h2 className={styles.moodToday}>How is your mood today, {name}?</h2>
       <Calendar
         className={styles.moodCalendar}
