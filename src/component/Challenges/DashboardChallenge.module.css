@@ -97,11 +97,11 @@ ul {
 }
 
 .inputCheckbox:checked::before {
-    background-color: #E38A33;
+    background-color: #ffa502;
 }
 
 .inputCheckbox:checked {
-    border-color: #E38A33;
+    border-color: #ffa502;
 }
 
 .challengeName {
@@ -120,7 +120,6 @@ ul {
 .progressContainer {
     width: 95%;
     height: 25px;
-    /* background-color: #ddd; */
     border-radius: 10px;
     margin: 15px;
     position: relative;
@@ -128,12 +127,11 @@ ul {
     display: flex;
     align-items: start;
     justify-content: start;
-    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
 }
 
 .progressBar {
     height: 100%;
-    background: linear-gradient(90deg, #ff6b6b, #ffa502, #2ed573, #1e90ff);
+    background: linear-gradient(90deg, #ff6b6b, #ffa502, #ddff02, #2ed573, #1e90ff);
     background-size: 200% 200%;
     animation: gradientAnimation 3s infinite alternate, growWidth 0.8s ease-in-out;
     transition: width 0.5s ease-in-out;
@@ -157,11 +155,11 @@ ul {
 }
 
 .progressText {
-    /* display: flex; */
     position: relative;
     font-size: 14px;
     font-weight: bold;
     color: #333;
+    margin: 2px 0 0 5px;
     z-index: 2;
 
 }

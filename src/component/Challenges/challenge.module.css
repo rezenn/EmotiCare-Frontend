@@ -9,9 +9,9 @@
 
 .challengeContainer {
     padding-top: 10px;
-    margin: 70px 0 50px 110px;
+    margin: 80px 0 50px 30px;
     width: 725px;
-    min-height: 455px;
+    height: 530px;
     background-color: hsla(0, 0%, 100%, 0.34);
     box-shadow: 5px 7px 6px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
@@ -96,11 +96,11 @@ ul {
 }
 
 .inputCheckbox:checked::before {
-    background-color: #E38A33;
+    background-color: #ffa502;
 }
 
 .inputCheckbox:checked {
-    border-color: #E38A33;
+    border-color: #ffa502;
 }
 
 .challengeName {
@@ -122,9 +122,13 @@ ul {
     height: 30px;
     font-family: 'Basic', serif;
     font-size: 15px;
-    background-color: #89CFF0;
+    background-color: #ff6b6bd2;
     border-radius: 15px;
-    border: 1px solid #333;
+    border: none;
+}
+
+.removeButton:hover {
+    background-color: #f14141b6;
 }
 
 .addChallenge {
@@ -136,9 +140,9 @@ ul {
     font-family: 'Basic', serif;
     font-size: 15px;
     background-color: hsla(51, 100%, 50%, 0.708);
-    border: 1px solid #333;
+    border: none;
 }
 
 .addChallenge:hover {
-    background-color: hsla(51, 100%, 50%, 0.508);
+    background-color: hsla(51, 100%, 50%, 0.908);
 }
