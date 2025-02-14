@@ -21,7 +21,7 @@ function DashboardChallenge() {
       const challengesWithCompleted = response.data.map((challenge) => ({
         ...challenge,
         completed: challenge.isdone || false,
-        isPreloaded: challenge.IsPreloaded || false, // Add IsPreloaded flag
+        isPreloaded: challenge.IsPreloaded || false, // Track if challenge is preloaded
       }));
 
       setChallenges(challengesWithCompleted);
@@ -30,7 +30,6 @@ function DashboardChallenge() {
     }
   };
 
-  // Adjust the checkbox behavior to disable interaction with preloaded challenges
   const toggleChallenge = async (index) => {
     const selectedChallenge = challenges[index];
 
@@ -39,7 +38,6 @@ function DashboardChallenge() {
       return;
     }
 
-    // Proceed with toggling if it's not preloaded
     try {
       const token = localStorage.getItem("token");
 
@@ -60,10 +58,33 @@ function DashboardChallenge() {
     }
   };
 
+  // Progress Bar Calculations
+  const totalChallenges = challenges.length;
+  const completedChallenges = challenges.filter((c) => c.completed).length;
+  const completionPercentage =
+    totalChallenges > 0
+      ? Math.round((completedChallenges / totalChallenges) * 100)
+      : 0;
+
   return (
     <div className={styles.challengeContainer}>
       <h2 className={styles.challengeTitle}>Challenges</h2>
       <hr />
+
+      {/* Progress Bar */}
+      {totalChallenges > 0 && (
+        <div className={styles.progressContainer}>
+          <div
+            className={styles.progressBar}
+            style={{ width: `${completionPercentage}%` }}
+          ></div>
+          <p className={styles.progressText}>
+            {completionPercentage}% Completed ({completedChallenges}/
+            {totalChallenges})
+          </p>
+        </div>
+      )}
+
       <div className={styles.displayChallenges}>
         <ul>
           {challenges.map((challenge, index) => (
@@ -72,7 +93,8 @@ function DashboardChallenge() {
                 type="checkbox"
                 className={styles.inputCheckbox}
                 checked={challenge.completed || false}
-                onChange={() => toggleChallenge(index)} // Trigger toggle on change
+                onChange={() => toggleChallenge(index)}
+                disabled={challenge.isPreloaded} // Disable preloaded challenges
               />
               <span className={styles.challengeName}>{challenge.title}</span>
               <br />

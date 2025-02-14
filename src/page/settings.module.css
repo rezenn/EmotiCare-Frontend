@@ -1,46 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Basic&family=Baumans&family=Doto:wght@100..900&family=Faculty+Glyphic&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Anta&family=Baumans&family=Doto:wght@100..900&family=Marmelad&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    background-color: #EBDFD7;
-
-}
-
 .container {
-    background-color: aliceblue;
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
     width: 800px;
     height: 500px;
-    margin-top: 100px;
-    margin-left: 350px;
+    margin: 100px auto 70px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#logoutButton {
-    font-family: 'Roboto';
-    position: relative;
-    display: flex;
-    align-items: start;
-    gap: 35px;
-    padding-top: 15px;
-    font-size: 14px;
-    border: none;
+.logoutButton,
+.toggleButton {
+    font-size: 16px;
     font-weight: bold;
     height: 48px;
-    margin-top: 150px;
-    margin-left: 50px;
+    width: 180px;
+    border: none;
+    border-radius: 8px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
 }
 
-#logoutButton:hover {
-    color: #FF4500;
-}
-
-.logout_icon {
+.logoutButton {
+    background-color: #437bdc;
+    color: white;
+    display: flex;
     align-items: center;
-    Width: 24px;
-    Height: 17px;
-    Top: 12px;
-    Left: 16px;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logoutButton:hover {
+    background-color: #5a8ee8;
+}
+
+.toggleButton {
+    background-color: #555;
+    color: white;
+}
+
+.toggleButton:hover {
+    background-color: #777;
+}
+
+.logoutIcon {
+    width: 24px;
+    height: 24px;
 }

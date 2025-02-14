@@ -13,7 +13,7 @@
     padding-top: 10px;
     margin: 80px 0 0 110px;
     width: 725px;
-    height: 455px;
+    height: 530px;
     background-color: hsla(0, 0%, 100%, 0.34);
     box-shadow: 5px 7px 6px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
@@ -115,4 +115,53 @@ ul {
 
 .challengeName:first-child {
     margin-top: 10px;
+}
+
+.progressContainer {
+    width: 95%;
+    height: 25px;
+    /* background-color: #ddd; */
+    border-radius: 10px;
+    margin: 15px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
+}
+
+.progressBar {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b6b, #ffa502, #2ed573, #1e90ff);
+    background-size: 200% 200%;
+    animation: gradientAnimation 3s infinite alternate, growWidth 0.8s ease-in-out;
+    transition: width 0.5s ease-in-out;
+    border-radius: 10px;
+}
+
+@keyframes growWidth {
+    from {
+        width: 0%;
+    }
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.progressText {
+    /* display: flex; */
+    position: relative;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    z-index: 2;
+
 }

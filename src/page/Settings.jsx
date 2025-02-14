@@ -1,25 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../component/Navbar/Navbar";
+import Footer2 from "../component/Footer/Footer2";
 import style from "./settings.module.css";
 import logoutIcon from "../assets/logout.svg";
 import { toast } from "react-toastify";
-import Footer2 from "../component/Footer/Footer2";
+
 function Settings({ setAuth }) {
   const navigate = useNavigate();
 
-  // const logout = async e => {
-  //     e.preventDefault();
-  //     try {
-  //         localStorage.removeItem("token");
-  //         setAuth(false);
-  //         navigate("/login");
-
-  //     } catch (error) {
-  //         console.error(error.message);
-  //     }
-
-  // }
+  // Load dark mode state from localStorage
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("darkMode") === "true"
+  );
 
   const logout = async (e) => {
     e.preventDefault();
@@ -27,22 +20,23 @@ function Settings({ setAuth }) {
       localStorage.removeItem("token");
       localStorage.removeItem("email");
       setAuth(false);
-      alert("Logout successful!");
+      toast.success("Logout successful!");
+      navigate("/login");
     } catch (err) {
       console.error(err.message);
+      toast.error("Logout failed!");
     }
   };
 
   return (
     <>
-      <Navbar
-        className={style.Navbar}
-        activePage="settings"
-        setActivePage={() => {}}
-      />
+      <Navbar activePage="settings" setActivePage={() => {}} />
       <div className={style.container}>
+        <h2 className={style.title}>Settings</h2>
+
+        {/* Logout Button */}
         <button onClick={logout} className={style.logoutButton}>
-          <img src={logoutIcon} alt="logout" className="logout" />
+          <img src={logoutIcon} alt="logout" className={style.logoutIcon} />
           Logout
         </button>
       </div>
