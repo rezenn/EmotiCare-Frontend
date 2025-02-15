@@ -37,9 +37,13 @@
     padding: 0;
     border: none;
     color: #333;
-    background-color: rgb(251, 251, 251);
+    background-color: rgba(251, 247, 7, 0.736);
     font-family: "Raleway", serif;
     font-size: 1rem;
+}
+
+.insightBtn:hover {
+    background-color: rgba(227, 226, 191, 0.941);
 }
 
 .moodContainer {
@@ -56,6 +60,11 @@
     margin: 0;
 }
 
+.moodEmoji:hover {
+    transform: scale(1.1);
+
+}
+
 .moodName {
     margin: 1rem 0 0 1rem;
     padding: 0.5rem 1.4rem;
@@ -67,4 +76,20 @@
     max-width: 110px;
     max-height: 40px;
     border-radius: 20px;
+
+}
+
+.moodName:hover {
+    transform: scale(1.1);
+    transition: all 0.8s ease-in-out 0s;
+    background-color: transparent;
+    color: #333;
+    cursor: default;
+
+}
+
+.noMood {
+    margin: 80px 10px 0 50px;
+    font-family: "Raleway", serif;
+    font-size: 1.7rem;
 }

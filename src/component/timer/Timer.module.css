@@ -95,7 +95,7 @@
 
 .startBtn:hover {
     background-color: hsla(51, 100%, 50%, 0.603);
-    box-shadow: 0px 15px 20px hsla(51, 100%, 50%, 0.382);
+    box-shadow: 0px 5px 20px hsla(51, 100%, 50%, 0.382);
     transform: translateY(-7px);
 
 

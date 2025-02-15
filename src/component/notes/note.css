@@ -32,6 +32,7 @@ hr {
 
 .note {
     margin: 25px 20px 10px 30px;
+    padding: 0 10px;
     width: 395px;
     min-height: 200px;
     max-height: 200px;

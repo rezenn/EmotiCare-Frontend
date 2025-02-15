@@ -9,6 +9,7 @@ function DailyChallenge() {
   return (
     <>
       <Navbar />
+      <h2 className={styles.title}>Daily Challenges</h2>
       <div className={styles.container}>
         <DashboardChallenge className={styles.challenges} />
         <Challenge />
