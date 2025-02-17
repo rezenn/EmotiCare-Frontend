@@ -72,7 +72,7 @@ function MoodTracker() {
 
     const interval = setInterval(() => {
       getNameAndMoods();
-    }, 3000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);
