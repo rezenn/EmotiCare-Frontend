@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MoodLineChart from "../Chart/MoodLineChart";
 import MoodPieChart from "../Chart/MoodPieChart";
 import styles from "./displayChart.module.css";
+import MoodBarChart from "../Chart/MoodBarChart";
 
 function DisplayChart() {
   const [name, setName] = useState("");
@@ -74,15 +75,20 @@ function DisplayChart() {
     <div>
       <div className={styles.chartsDisplay}>
         <div className={styles.chartContainer}>
-          <span className={styles.moodChartTitle}>Mood Chart</span>
+          <span className={styles.moodChartTitle}>Mood Trend Line Chart</span>
           <hr className={styles.hr} />
           <MoodLineChart moods={moodData} />
         </div>
 
         <div className={styles.PiechartContainer}>
-          <span className={styles.moodChartTitle}>Mood Count</span>
+          <span className={styles.moodChartTitle}>Mood Distribution Chart</span>
           <hr className={styles.hr} />
           <MoodPieChart moods={moodData} />
+        </div>
+        <div className={styles.PiechartContainer}>
+          <span className={styles.moodChartTitle}>Mood Frequency Chart</span>
+          <hr className={styles.hr} />
+          <MoodBarChart />
         </div>
       </div>
     </div>

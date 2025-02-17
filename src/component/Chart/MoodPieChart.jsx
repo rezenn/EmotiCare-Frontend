@@ -6,7 +6,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const MoodPieChart = ({ moods }) => {
   if (!moods || moods.length === 0) {
-    return <p>No mood data available.</p>;
+    return (
+      <p style={{ marginLeft: "200px", margin: "200px" }}>
+        No mood data available.
+      </p>
+    );
   }
 
   // Count occurrences of each mood

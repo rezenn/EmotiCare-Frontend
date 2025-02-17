@@ -29,6 +29,8 @@
     background-color: hsla(0, 0%, 100%, 0.34);
     box-shadow: 5px 7px 6px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
+    padding-top: 5px;
+
 }
 
 .PiechartContainer {
@@ -38,6 +40,8 @@
     background-color: hsla(0, 0%, 100%, 0.34);
     box-shadow: 5px 7px 6px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
+    padding-top: 5px;
+
 }
 
 .moodChartTitle {

@@ -83,7 +83,7 @@ function MoodTracker() {
       <div className={styles.container}>
         <MoodCalendar onMoodDataChange={getNameAndMoods} />
         <div className={styles.pieChart}>
-          <h2 className={styles.heading}>Pie Chart</h2>
+          <h2 className={styles.heading}>Mood Distribution Chart</h2>
           <MoodPieChart moods={moodData} />
         </div>
       </div>

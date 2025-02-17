@@ -9,8 +9,9 @@
 }
 
 .heading {
-    margin-left: "50px";
+    margin-left: 0px;
     color: #555;
     margin-left: 350px;
     font-family: "Raleway";
+    font-size: 1.4rem;
 }
