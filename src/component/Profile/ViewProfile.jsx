@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../../axios/axios"; // Import Axios instance
+import axios from "../../axios/axios";
 import styles from "./ViewProfile.module.css";
 import { Link } from "react-router-dom";
 import defaultUserImage from "../../assets/ProfileImg.jpg";
@@ -191,7 +191,6 @@ function ViewProfile() {
   );
 }
 
-// Reusable Component for Profile Fields
 function ProfileField({ label, value }) {
   return (
     <p className={styles.profileField}>

@@ -21,12 +21,12 @@ import Resources from "./page/Resources";
 import Features from "./page/Features";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    return !!localStorage.getItem("token"); // Check if token exists on initialization
+    return !!localStorage.getItem("token");
   });
 
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean);
-    if (!boolean) localStorage.removeItem("token"); // Clear token on logout
+    if (!boolean) localStorage.removeItem("token");
   };
 
   async function isAuth() {

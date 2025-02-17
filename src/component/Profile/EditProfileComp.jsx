@@ -118,8 +118,8 @@ function EditProfileComp() {
                 : profileImg
                 ? profileImg.startsWith("http")
                   ? profileImg
-                  : `http://localhost:5000${profileImg}` // If profileImg is available, use it
-                : defaultUserImage // Use default image if no profileImg is found
+                  : `http://localhost:5000${profileImg}`
+                : defaultUserImage
             }
             alt="User"
           />

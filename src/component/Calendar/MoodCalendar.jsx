@@ -100,7 +100,7 @@ const MoodCalendar = ({ onMoodDataChange }) => {
 
   const handleDateClick = (date) => {
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize today's date for accurate comparison
+    today.setHours(0, 0, 0, 0); // Normalize today's date
 
     if (date > today) {
       alert("You cannot set a mood for a future date!");
@@ -149,7 +149,12 @@ const MoodCalendar = ({ onMoodDataChange }) => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        {" "}
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   return (

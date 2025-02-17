@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react"; // Add useEffect import
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
-import defaultUserImage from "../../assets/ProfileImg.jpg"; // Import default user image
-import logoImage from "../../assets/logoImage.png"; // Import logo image
+import defaultUserImage from "../../assets/ProfileImg.jpg";
+import logoImage from "../../assets/logoImage.png";
 
 function Navbar() {
   const [email, setEmail] = useState("");
   const [profileImg, setProfileImg] = useState("");
-  const [isFetching, setIsFetching] = useState(true); // Add isFetching state
+  const [isFetching, setIsFetching] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ function Navbar() {
   return (
     <header className="header">
       <div className="logo">
-        <img src={logoImage} alt="EmotiCare Logo" /> {/* Use imported logo */}
+        <img src={logoImage} alt="EmotiCare Logo" />
       </div>
       <nav className={`nav ${isMenuOpen ? "active" : ""}`}>
         <ul>

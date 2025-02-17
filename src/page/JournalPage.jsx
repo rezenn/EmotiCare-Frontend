@@ -18,27 +18,25 @@ function JournalPage() {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        setJournals(response.data); // Update state with the latest journals
+        setJournals(response.data);
       } catch (error) {
         console.error("Error fetching journals:", error);
       }
     };
 
     fetchJournals();
-  }, []); // Run only once when the component mounts
+  }, []);
 
   const addItem = (newJournal) => {
-    setJournals((prevJournals) => [...prevJournals, newJournal]); // Update the journals state
+    setJournals((prevJournals) => [...prevJournals, newJournal]);
   };
 
   return (
     <>
       <Navbar activePage="journal" />
       <div className={styles.journalContainer}>
-        {/* <JournalForm addItem={addItem} journals={journals} /> */}
         <div className={styles.verticalLine}></div>
         <JournalView journals={journals} setJournals={setJournals} />{" "}
-        {/* Pass setJournals here */}
       </div>
       <Footer2 />
     </>

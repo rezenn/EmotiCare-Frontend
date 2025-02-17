@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+}
+
+.pieChart {
+    margin-top: 250px;
+    margin-left: -170px;
+    width: 600px;
+}
+
+.heading {
+    margin-left: "50px";
+    color: #555;
+    margin-left: 350px;
+    font-family: "Raleway";
+}

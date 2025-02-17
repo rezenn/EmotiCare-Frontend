@@ -71,6 +71,7 @@
     font-family: "Raleway", serif;
     font-size: 1rem;
     font-weight: 600;
+    width: fit-content;
     color: #555;
     background-color: hsla(51, 100%, 50%, 0.601);
     max-width: 110px;
@@ -82,10 +83,10 @@
 .moodName:hover {
     transform: scale(1.1);
     transition: all 0.8s ease-in-out 0s;
-    background-color: transparent;
+    background-color: hsla(51, 100%, 50%, 0.896);
+    box-shadow: 0px 5px 20px hsla(51, 100%, 50%, 0.382);
     color: #333;
     cursor: default;
-
 }
 
 .noMood {

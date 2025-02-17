@@ -9,11 +9,6 @@ import { toast } from "react-toastify";
 function Settings({ setAuth }) {
   const navigate = useNavigate();
 
-  // Load dark mode state from localStorage
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("darkMode") === "true"
-  );
-
   const logout = async (e) => {
     e.preventDefault();
     try {
@@ -34,7 +29,6 @@ function Settings({ setAuth }) {
       <div className={style.container}>
         <h2 className={style.title}>Settings</h2>
 
-        {/* Logout Button */}
         <button onClick={logout} className={style.logoutButton}>
           <img src={logoutIcon} alt="logout" className={style.logoutIcon} />
           Logout

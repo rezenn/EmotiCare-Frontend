@@ -52,7 +52,7 @@ function JournalForm({ addItem, journals }) {
         }
       );
 
-      addItem(response.data); // Update UI with the new journal entry
+      addItem(response.data);
       alert("Journal added successfully!");
       navigate("/journal");
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "../../axios/axios"; // Adjust the import path
+import axios from "../../axios/axios";
 import styles from "./journalView.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -36,8 +36,6 @@ function JournalView() {
     };
 
     fetchJournals(); // Fetch initially
-
-    // Auto-fetch every 5 seconds
   }, []);
 
   const formatDate = (dateString) => {

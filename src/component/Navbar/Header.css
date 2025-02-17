@@ -62,6 +62,10 @@ body {
     color: #6d8e00;
 }
 
+.nav a:active {
+    color: #6d8e00;
+}
+
 /* Active link styling */
 .nav a.active-link {
     color: #6d8e00;

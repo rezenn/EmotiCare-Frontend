@@ -30,7 +30,7 @@ function MoodLineChart({ moods }) {
 
   // Convert mood labels to numerical scale
   const moodData = moods.map((mood) => ({
-    date: mood.date, // No timezone shift
+    date: mood.date,
     mood: moodOrder.indexOf(mood.mood), // Convert mood to index
   }));
 

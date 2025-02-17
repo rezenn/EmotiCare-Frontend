@@ -21,7 +21,7 @@ function DashboardChallenge() {
       const challengesWithCompleted = response.data.map((challenge) => ({
         ...challenge,
         completed: challenge.isdone || false,
-        isPreloaded: challenge.IsPreloaded || false, // Track if challenge is preloaded
+        isPreloaded: challenge.IsPreloaded || false,
       }));
 
       setChallenges(challengesWithCompleted);

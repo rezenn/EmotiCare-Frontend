@@ -20,14 +20,14 @@ function TodayMood() {
         headers: { Authorization: `Bearer ${token}` }, // Pass token in headers for authentication
       });
 
-      setMoods(response.data); // Set the mood data
+      setMoods(response.data);
     } catch (error) {
       console.error("Error fetching mood data:", error);
     }
   };
 
   useEffect(() => {
-    fetchMood(); // Fetch latest mood when the component mounts
+    fetchMood();
   }, []);
 
   return (
@@ -40,14 +40,12 @@ function TodayMood() {
       </div>
       <hr />
       <div className={styles.moodContainer}>
-        {/* Check if moods object has data before rendering */}
         {moods.mood_emoji && (
           <>
             <span className={styles.moodName}>{moods.mood_label}</span>
             <p className={styles.moodEmoji}>{moods.mood_emoji}</p>
           </>
         )}
-        {/* Fallback message if no mood data */}
         {!moods.mood_emoji && (
           <p className={styles.noMood}>No mood data available 🥺 </p>
         )}

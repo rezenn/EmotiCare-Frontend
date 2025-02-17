@@ -32,7 +32,7 @@ function Dashboard({ setAuth }) {
         "😒": "Annoyed",
         "🫨": "Overwhelmed",
         "😰": "Nervous",
-        "😞": "Disappointed", // Make sure this matches exactly!
+        "😞": "Disappointed",
         "😡": "Angry",
         "😤": "Enraged",
       };
@@ -51,7 +51,7 @@ function Dashboard({ setAuth }) {
 
       if (Array.isArray(parseRes.moods)) {
         const moodsFormatted = parseRes.moods.map((mood) => {
-          // Convert stored UTC date to local date without shifting
+          // Convert stored UTC date to local date
           const date = new Date(mood.mood_date);
           const localDate = new Date(
             date.getFullYear(),
@@ -65,7 +65,7 @@ function Dashboard({ setAuth }) {
           };
         });
 
-        // Ensure last 7 days including today
+        // last 7 days mood including today
         const today = new Date();
         const sevenDaysAgo = new Date();
         sevenDaysAgo.setDate(today.getDate() - 7);

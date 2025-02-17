@@ -8,7 +8,6 @@ function Login({ setAuth }) {
       <Header />
       <LoginForm setAuth={setAuth} />
       <Footer />
-      {/*  */}
     </>
   );
 }
