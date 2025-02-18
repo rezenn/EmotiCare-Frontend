@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
-import "./textEditor.css"; // Import your custom CSS
+import "./textEditor.css"; 
 
 function TextEditor({ value, onChange }) {
   const { quill, quillRef } = useQuill({

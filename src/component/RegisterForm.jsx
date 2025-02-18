@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "../axios/axios"; // Import Axios instance
+import axios from "../axios/axios";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./login.css";
 
 function RegisterForm({ setAuth }) {
@@ -9,7 +10,8 @@ function RegisterForm({ setAuth }) {
     email: "",
     password: "",
   });
-
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const navigate = useNavigate();
   const { name, email, password } = inputs;
 
   const onChange = (e) =>
@@ -74,13 +76,25 @@ function RegisterForm({ setAuth }) {
           <label id="Password">Password</label>
           <br />
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Enter password"
             name="password"
             value={password}
             onChange={onChange}
             required
           />
+
+          <button
+            type="button"
+            className="togglePassword2"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? (
+              <FaEyeSlash className="eyeIcon" />
+            ) : (
+              <FaEye className="eyeIcon" />
+            )}
+          </button>
           <br />
           <button className="signinButton">Register</button>
         </form>

@@ -11,7 +11,22 @@
 .heading {
     margin-left: 0px;
     color: #555;
-    margin-left: 290px;
+    margin-left: 29git 0px;
     font-family: "Raleway";
     font-size: 1.4rem;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        display: inline;
+
+    }
+
+    .pieChart {
+        margin-left: 100px;
+    }
+
+    .heading {
+        margin-left: 270px;
+    }
 }

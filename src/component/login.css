@@ -79,7 +79,8 @@ input {
     color: #4e4d4d;
 }
 
-.togglePassword {
+.togglePassword,
+.togglePassword2 {
     height: fit-content;
     width: fit-content;
     padding: 0;
@@ -93,9 +94,15 @@ input {
 
 }
 
-.togglePassword:hover {
+.togglePassword:hover,
+.togglePassword2:hover {
     background-color: transparent;
 }
+
+.togglePassword2 {
+    margin-left: 570px;
+}
+
 
 .eyeIcon {
     margin: 0;

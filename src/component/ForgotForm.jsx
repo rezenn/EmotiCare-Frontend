@@ -1,9 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "../axios/axios"; // Import Axios instance
+import axios from "../axios/axios";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./login.css";
 
 function ForgotForm({ setAuth }) {
+  const [showPassword, setShowPassword] = useState(false); // Toggle New Password
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Toggle Confirm Password
+
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     email: "",
@@ -61,24 +65,46 @@ function ForgotForm({ setAuth }) {
           <label>Password</label>
           <br />
           <input
-            type="password"
+            type={showPassword ? "text" : "password"} // Toggle visibility for new password
             placeholder="Enter new password"
             name="password"
             value={password}
             onChange={onChange}
             required
           />
+          <button
+            type="button"
+            className="togglePassword2"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? (
+              <FaEyeSlash className="eyeIcon" />
+            ) : (
+              <FaEye className="eyeIcon" />
+            )}
+          </button>
           <br />
           <label>Confirm Password</label>
           <br />
           <input
-            type="password"
+            type={showConfirmPassword ? "text" : "password"} // Toggle visibility for confirm password
             placeholder="Re-enter new password"
             name="confirmPassword"
             value={confirmPassword}
             onChange={onChange}
             required
           />
+          <button
+            type="button"
+            className="togglePassword2"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? (
+              <FaEyeSlash className="eyeIcon" />
+            ) : (
+              <FaEye className="eyeIcon" />
+            )}
+          </button>
           <br />
           <button className="signinButton">Reset Password</button>
         </form>
