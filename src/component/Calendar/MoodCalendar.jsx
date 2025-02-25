@@ -32,24 +32,6 @@ const MoodCalendar = ({ onMoodDataChange }) => {
     { emoji: "😤", label: "Enraged" },
   ];
 
-  const emojiToNumber = {
-    "😀": 5,
-    "🤩": 5,
-    "😇": 5,
-    "😌": 4,
-    "😮": 4,
-    "😴": 3,
-    "😐": 4,
-    "🫨": 2,
-    "😰": 2,
-    "😤": 1,
-    "😒": 2,
-    "😕": 3,
-    "😔": 1,
-    "😡": 1,
-    "😞": 1,
-  };
-
   const getLocalDate = (date) => {
     const offset = date.getTimezoneOffset() * 60000;
     const localDate = new Date(date.getTime() - offset);
@@ -100,7 +82,7 @@ const MoodCalendar = ({ onMoodDataChange }) => {
 
   const handleDateClick = (date) => {
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize today's date
+    today.setHours(0, 0, 0, 0);
 
     if (date > today) {
       alert("You cannot set a mood for a future date!");
@@ -151,7 +133,6 @@ const MoodCalendar = ({ onMoodDataChange }) => {
   if (isLoading) {
     return (
       <div>
-        {" "}
         <p>Loading...</p>
       </div>
     );

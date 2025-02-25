@@ -17,24 +17,16 @@ function Header() {
       <nav className={`nav ${isMenuOpen ? "active" : ""}`}>
         <ul>
           <li>
-            <NavLink to="/" activeClassName="active-link" exact>
-              Home
-            </NavLink>
+            <NavLink to="/" activeClassName="active-link" exact>  Home</NavLink>
           </li>
           <li>
-            <NavLink to="/features" activeClassName="active-link">
-              Features
-            </NavLink>
+            <NavLink to="/features" activeClassName="active-link">Features </NavLink>
           </li>
           <li>
-            <NavLink to="/resources" activeClassName="active-link">
-              Resources
-            </NavLink>
+            <NavLink to="/resources" activeClassName="active-link">  Resources</NavLink>
           </li>
           <li>
-            <NavLink to="/login" activeClassName="active-link">
-              Login
-            </NavLink>
+            <NavLink to="/login" activeClassName="active-link">  Login</NavLink>
           </li>
         </ul>
       </nav>

@@ -17,7 +17,7 @@ function TodayMood() {
       if (!token) throw new Error("No token found.");
 
       const response = await axios.get("/moodTracker/userMood", {
-        headers: { Authorization: `Bearer ${token}` }, // Pass token in headers for authentication
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       setMoods(response.data);

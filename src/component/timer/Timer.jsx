@@ -80,7 +80,7 @@ function Timer() {
     background.current.currentTime = 0;
     alarm.current.pause();
     alarm.current.currentTime = 0;
-    setTimerSecond(1800); // Reset timer to initial value
+    setTimerSecond(1800);
   };
 
   return (

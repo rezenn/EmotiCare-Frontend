@@ -58,7 +58,6 @@ function DashboardChallenge() {
     }
   };
 
-  // Progress Bar Calculations
   const totalChallenges = challenges.length;
   const completedChallenges = challenges.filter((c) => c.completed).length;
   const completionPercentage =
@@ -71,7 +70,6 @@ function DashboardChallenge() {
       <h2 className={styles.challengeTitle}>Challenges</h2>
       <hr />
 
-      {/* Progress Bar */}
       {totalChallenges > 0 && (
         <div className={styles.progressContainer}>
           <div
@@ -94,7 +92,7 @@ function DashboardChallenge() {
                 className={styles.inputCheckbox}
                 checked={challenge.completed || false}
                 onChange={() => toggleChallenge(index)}
-                disabled={challenge.isPreloaded} // Disable preloaded challenges
+                disabled={challenge.isPreloaded}
               />
               <span className={styles.challengeName}>{challenge.title}</span>
               <br />

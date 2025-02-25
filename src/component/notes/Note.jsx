@@ -11,15 +11,11 @@ function Note() {
   useEffect(() => {
     fetchNotes();
   }, []);
-
   const fetchNotes = async () => {
     try {
       const token = localStorage.getItem("token");
-
-      const response = await axios.get("/note", {
-        headers: { token },
+      const response = await axios.get("/note", { headers: { token },
       });
-
       if (response.data.length > 0) {
         setNote(response.data[0].note_desc || "");
         setNoteId(response.data[0].note_id);
@@ -29,24 +25,15 @@ function Note() {
       setError("Failed to fetch notes.");
     }
   };
-
   const saveNote = async () => {
     try {
       setIsSaving(true);
       setError(null);
-
       const token = localStorage.getItem("token");
-
       const url = "/note";
       const method = noteId ? "PUT" : "POST";
-
-      const response = await axios({
-        method,
-        url,
-        headers: { token },
-        data: { noteId, noteDesc: note },
+      const response = await axios({ method, url, headers: { token }, data: { noteId, noteDesc: note },
       });
-
       if (!noteId) {
         setNoteId(response.data.note_id);
       }
@@ -72,14 +59,8 @@ function Note() {
     <div className="noteContainer">
       <span className="noteTitle">Notes</span>
       <hr />
-      <textarea
-        name="notes"
-        id="notes"
-        className="note"
-        value={note || ""}
-        onChange={(e) => setNote(e.target.value)}
-        disabled={isSaving}
-        placeholder="note..."
+      <textarea name="notes" id="notes" className="note" value={note || ""} onChange={
+        (e) => setNote(e.target.value)} disabled={isSaving} placeholder="note..."
       />
       {isSaving && <p className="savingIndicator">Saving...</p>}
       {error && <p className="errorMessage">{error}</p>}

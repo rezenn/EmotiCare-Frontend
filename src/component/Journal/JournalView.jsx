@@ -13,6 +13,7 @@ function JournalView() {
   const handleCreateClick = () => {
     navigate("/addJournal");
   };
+
   useEffect(() => {
     const fetchJournals = async () => {
       setIsLoading(true);
@@ -35,7 +36,7 @@ function JournalView() {
       }
     };
 
-    fetchJournals(); // Fetch initially
+    fetchJournals(); 
   }, []);
 
   const formatDate = (dateString) => {
@@ -98,14 +99,12 @@ function JournalView() {
             )}
           </div>
           <hr />
-
           <div className={styles.journal_content}>
             {selectedJournal ? (
               <div className={styles.journal_details}>
                 <h3>{selectedJournal.title}</h3>
                 <div
-                  dangerouslySetInnerHTML={{
-                    __html: selectedJournal.description,
+                  dangerouslySetInnerHTML={{ __html: selectedJournal.description,
                   }}
                 ></div>
               </div>
@@ -115,8 +114,7 @@ function JournalView() {
                   <p>Loading journals...</p>
                 ) : (
                   journals.map((journal, index) => (
-                    <div
-                      key={journal.id || `journal-${index}`}
+                    <div key={journal.id || `journal-${index}`}
                       className={styles.journal_preview}
                       onClick={() => handleJournalClick(journal)}
                     >
@@ -137,5 +135,4 @@ function JournalView() {
     </>
   );
 }
-
 export default JournalView;

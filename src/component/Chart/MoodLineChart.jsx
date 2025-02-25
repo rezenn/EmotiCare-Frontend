@@ -28,10 +28,9 @@ function MoodLineChart({ moods }) {
     "Happy",
   ];
 
-  // Convert mood labels to numerical scale
   const moodData = moods.map((mood) => ({
     date: mood.date,
-    mood: moodOrder.indexOf(mood.mood), // Convert mood to index
+    mood: moodOrder.indexOf(mood.mood),
   }));
 
   return (

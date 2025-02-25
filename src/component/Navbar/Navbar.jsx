@@ -25,9 +25,7 @@ function Navbar() {
         const response = await fetch(
           `http://localhost:5000/profile/${loggedInEmail}`,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            headers: {  Authorization: `Bearer ${token}`,},
           }
         );
         if (!response.ok) {
@@ -77,23 +75,14 @@ function Navbar() {
           </li>
           <li>
             <Link to="/profile">
-              <img
-                className="user"
-                src={
-                  profileImg
-                    ? `http://localhost:5000${profileImg}`
-                    : defaultUserImage
-                }
-                alt="User Profile"
+              <img className="user"
+                src={ profileImg ? `http://localhost:5000${profileImg}`: defaultUserImage}alt="User Profile"
               />
             </Link>
           </li>
         </ul>
       </nav>
-      <div
-        className={`hamburger ${isMenuOpen ? "active" : ""}`}
-        onClick={toggleMenu}
-        aria-label="Toggle Menu"
+      <div className={`hamburger ${isMenuOpen ? "active" : ""}`} onClick={toggleMenu} aria-label="Toggle Menu"
       >
         <div></div>
         <div></div>

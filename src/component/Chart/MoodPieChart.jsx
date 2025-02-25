@@ -13,7 +13,6 @@ const MoodPieChart = ({ moods }) => {
     );
   }
 
-  // Count occurrences of each mood
   const moodCounts = moods.reduce((acc, { mood }) => {
     acc[mood] = (acc[mood] || 0) + 1;
     return acc;

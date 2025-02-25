@@ -51,7 +51,6 @@ function Dashboard({ setAuth }) {
 
       if (Array.isArray(parseRes.moods)) {
         const moodsFormatted = parseRes.moods.map((mood) => {
-          // Convert stored UTC date to local date
           const date = new Date(mood.mood_date);
           const localDate = new Date(
             date.getFullYear(),

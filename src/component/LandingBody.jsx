@@ -8,9 +8,7 @@ function LandingBody() {
           <div id={style.saying}>
             <h1 className={style.slogan}>
               Track your <span className={style.keyword}>Mood</span> <br />
-              and Maintain a <br />
-              Healthy Relation <br />
-              with Yourself <br />
+              and Maintain a <br /> Healthy Relation <br /> with Yourself <br />
             </h1>
           </div>
           <div>

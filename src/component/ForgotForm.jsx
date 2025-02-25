@@ -5,8 +5,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./login.css";
 
 function ForgotForm({ setAuth }) {
-  const [showPassword, setShowPassword] = useState(false); // Toggle New Password
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Toggle Confirm Password
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
 
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
@@ -65,7 +65,7 @@ function ForgotForm({ setAuth }) {
           <label>Password</label>
           <br />
           <input
-            type={showPassword ? "text" : "password"} // Toggle visibility for new password
+            type={showPassword ? "text" : "password"} 
             placeholder="Enter new password"
             name="password"
             value={password}
@@ -87,7 +87,7 @@ function ForgotForm({ setAuth }) {
           <label>Confirm Password</label>
           <br />
           <input
-            type={showConfirmPassword ? "text" : "password"} // Toggle visibility for confirm password
+            type={showConfirmPassword ? "text" : "password"}
             placeholder="Re-enter new password"
             name="confirmPassword"
             value={confirmPassword}

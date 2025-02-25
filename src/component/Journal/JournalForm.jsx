@@ -13,6 +13,11 @@ function JournalForm({ addItem, journals }) {
   const [text, setText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const convertToUTC = (time) => {
+    const date = new Date(`1970-01-01T${time}:00`);
+    return date.toISOString().split("T")[1].slice(0, 8); 
+  };
+
   const onSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -24,7 +29,6 @@ function JournalForm({ addItem, journals }) {
       return;
     }
 
-    // Check if a journal for this date already exists
     const existingJournal = journals.find(
       (journal) => journal.entry_date === date
     );
@@ -42,7 +46,7 @@ function JournalForm({ addItem, journals }) {
           title,
           description: text,
           entry_date: date,
-          entry_time: time,
+          entry_time: convertToUTC(time), 
         },
         {
           headers: {
@@ -56,7 +60,6 @@ function JournalForm({ addItem, journals }) {
       alert("Journal added successfully!");
       navigate("/journal");
 
-      // Clear input fields
       setTitle("");
       setDate("");
       setTime("");
